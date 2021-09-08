@@ -1,0 +1,45 @@
+
+#配置端口号
+server:
+  port: 8080
+  servlet:
+    context-path: /blogs/
+
+
+#数据库连接信息
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: root
+    url: jdbc:mysql://localhost:3306/blogs?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2B8
+    #redis的信息
+  redis:
+    port: 6379
+    host: 120.79.224.47
+  thymeleaf:
+    cache: false
+    #邮箱服务
+  mail:
+    host: smtp.qq.com
+    username: 2233534032@qq.com
+    password: qhsadrltxxdbeagg
+    properties.mail.smtp.enable: true
+  web:
+    resources:
+      static-locations: classpath:upload/,file:upload/
+  servlet:
+    multipart:
+      max-file-size: 150MB
+      max-request-size: 1000MB
+
+#mybatis的sql映射文件和实体类
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.study.pojo
+
+
+# 120.79.224.47
+
+
+

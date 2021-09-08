@@ -1,0 +1,143 @@
+/*/*评论区的样式*/
+/******************************评论区*/
+.user_comment_div{
+    width: 650px;
+    height: auto;
+    position: relative;
+     display: none;
+}
+.user_comment_div>div{
+    width: 650px;
+    /*height:auto;*/
+    /*  background-color: #ff253a;*/
+}
+/**/
+.comment_div_input{
+    margin-top: 5px;
+    width: 600px;
+    height: auto;
+
+}
+.input_btn{
+    height: 60px;
+}
+/*显示的用户头像的样式*/
+.user_comment_img{
+    margin-top: 3px;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+}
+.user_comment_img>a{
+    width: 34px;
+    height: 34px;
+}
+/*评论输入框的样式*/
+.comment_input>textarea{
+    margin-left: 10px;
+    margin-top: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 11px;
+    width: 460px;
+    height: 18px;
+    line-height: 18px;
+    border-radius: 10px;
+    outline: none;
+    resize: none;
+    font-size: 16px;
+    background-color: #e5e6eb;
+    border: 1px solid #e5e6eb;
+}
+.comment_input>textarea:focus {
+    border: 1px solid orange;
+    background-color: #ffffff;
+
+}
+.btn_ok_t{
+    position: absolute;
+    top: 7px;
+    right: 20px;
+
+}
+.btn_ok_t>input{
+    width: 60px;
+    height: 35px;
+    background-color: orange;
+    border-radius: 20px;
+    color: #ffffff;
+    border: 1px solid orange;
+}
+
+.comment_div_text{
+    overflow: hidden;
+    margin-top: 5px;
+    margin-left: 25px;
+    width: 550px;
+    height: auto;
+  /*  border-bottom: 1px solid #dddddd;*/
+}
+
+.user_nick{
+    margin-left: 50px;
+    margin-top: 5px;
+    width: auto;
+    height: 20px;
+  /*  font-size: 12px;*/
+}
+.user_nick>div>span{
+    margin-left: 5px;
+    font-size: 12px;
+    margin-top: 3px;
+}
+
+.comment_date{
+    width: 470px;
+    height: 20px;
+    font-size: 10px;
+    margin-left: 50px;
+    position: relative;
+   /* left: -65px;*/
+    text-align: left;
+
+}
+/*.comment_date>div:last-child{
+    position: absolute;
+    right: 10px;
+}*!
+
+.div_give_b{
+    position: absolute;
+    left: 430px;
+
+}
+.div_give_b>a{
+    color: #111;
+}
+
+.all_margin_right{
+    margin-right: 10px;
+}*/
+
+/*.div_give_b>a>i{
+    margin-right: 10px;
+}*/
+
+/*.comment_div_text:hover {
+    cursor: pointer;
+}*/
+
+
+
+/*.comment_div_text{
+    border: 1px solid red;
+    height: 200px;
+}*/
+.user_comment_img_commentUser:hover{
+    cursor: pointer;
+}
+
+.user_comment_img_commentUser{
+    width: 50px;
+    height: 50px;
+}

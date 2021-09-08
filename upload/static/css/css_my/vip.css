@@ -1,0 +1,64 @@
+/*vip的样式*/
+.user_head_vip_span{
+    display: none;
+    position: absolute;
+    top: 33px;
+    left: 35px;
+    height: 16px;
+    width: 16px;
+    background-color: #fdf55d;
+    line-height: 15px;
+    border-radius: 50%;
+    border: 1px solid #fdf55d;
+}
+.user_head_vip_logo{
+    color: orangered;
+}
+
+/*评论区的vip图标样式*/
+.user_comment_head_vip_span{
+    display: none;
+    position: absolute;
+    text-align: center;
+    top: 35px;
+    left: 45px;
+    height: 11px;
+    width: 11px;
+    background-color: #fdf55d;
+    line-height: 0.47em;
+    border-radius: 50%;
+    border: 1px solid #fdf55d;
+}
+.user_comment_head_vip_logo{
+    font-size: 11px;
+    color: orangered;
+    margin-left: -0.048em
+}
+
+/*导航栏上的头像*/
+.user_head_nav_img_vip{
+    display: none;
+    position: absolute;
+    top: 22px;
+    left: 22px;
+    height: 16px;
+    width: 16px;
+    background-color: #fdf55d;
+    line-height: 15px;
+    border-radius: 50%;
+    border: 1px solid #fdf55d;
+}
+/*评论区的vip标识的样式设置*/
+.user_head_vip_span_userId_comment_input{
+    display: none;
+    position: absolute;
+    text-align: center;
+    top: 29px;
+    left: 22px;
+    height: 11px;
+    width: 11px;
+    background-color: #fdf55d;
+    line-height: 0.47em;
+    border-radius: 50%;
+    border: 1px solid #fdf55d;
+}

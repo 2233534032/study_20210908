@@ -1,0 +1,84 @@
+nohup: ignoring input
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v2.5.3)
+
+2021-08-26 09:18:58.416  INFO 9690 --- [           main] com.study.BlogsApplication               : Starting BlogsApplication v1.0.0 using Java 1.8.0_202 on iZwz920llck3brrh83wyfeZ with PID 9690 (/usr/blog/blogs-1.0.0.jar started by root in /usr/blog)
+2021-08-26 09:18:58.428  INFO 9690 --- [           main] com.study.BlogsApplication               : No active profile set, falling back to default profiles: default
+2021-08-26 09:18:59.424  INFO 9690 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2021-08-26 09:18:59.427  INFO 9690 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2021-08-26 09:18:59.450  INFO 9690 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 8 ms. Found 0 Redis repository interfaces.
+2021-08-26 09:19:00.365  INFO 9690 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-08-26 09:19:00.388  INFO 9690 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-08-26 09:19:00.388  INFO 9690 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.50]
+2021-08-26 09:19:00.480  INFO 9690 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/blogs]  : Initializing Spring embedded WebApplicationContext
+2021-08-26 09:19:00.481  INFO 9690 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1968 ms
+2021-08-26 09:19:01.949  INFO 9690 --- [           main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2021-08-26 09:19:02.222  INFO 9690 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/blogs'
+2021-08-26 09:19:02.242  INFO 9690 --- [           main] com.study.BlogsApplication               : Started BlogsApplication in 4.454 seconds (JVM running for 5.001)
+2021-08-26 09:19:20.404  INFO 9690 --- [nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/blogs]  : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-08-26 09:19:20.404  INFO 9690 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-08-26 09:19:20.406  INFO 9690 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+当前在线人数：1
+有人来了
+当前状态未登录，重定向到登录页面
+当前状态未登录，重定向到登录页面
+当前状态未登录，重定向到登录页面
+当前状态未登录，重定向到登录页面
+当前状态未登录，重定向到登录页面
+当前状态未登录，重定向到登录页面
+当前状态未登录，重定向到登录页面
+当前状态未登录，重定向到登录页面
+当前状态未登录，重定向到登录页面
+2021-08-26 09:22:51.553  INFO 9690 --- [io-8080-exec-10] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-08-26 09:22:52.235  INFO 9690 --- [io-8080-exec-10] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+User(id=1, username=admin, password=admin, isPassword=null, gender=女, birth=2021-08-15, registryDate=2021-08-15, email=2233534032@qq.com, emailCode=null, brief=世间的美好，与你环环相扣, userHead=./title/head_photo.jpg)
+当前在线人数：0
+有人走了
+2021-08-26 10:31:23.439  INFO 9690 --- [nio-8080-exec-8] o.apache.coyote.http11.Http11Processor   : Error parsing HTTP request header
+ Note: further occurrences of HTTP request parsing errors will be logged at DEBUG level.
+
+java.lang.IllegalArgumentException: Invalid character found in method name [80;sh+/tmp/gpon8080&ipv=0...]. HTTP method names must be tokens
+	at org.apache.coyote.http11.Http11InputBuffer.parseRequestLine(Http11InputBuffer.java:419) ~[tomcat-embed-core-9.0.50.jar!/:na]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:269) ~[tomcat-embed-core-9.0.50.jar!/:na]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65) [tomcat-embed-core-9.0.50.jar!/:na]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:893) [tomcat-embed-core-9.0.50.jar!/:na]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1723) [tomcat-embed-core-9.0.50.jar!/:na]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) [tomcat-embed-core-9.0.50.jar!/:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [na:1.8.0_202]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [na:1.8.0_202]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-9.0.50.jar!/:na]
+	at java.lang.Thread.run(Thread.java:748) [na:1.8.0_202]
+
+当前在线人数：1
+有人来了
+当前状态未登录，重定向到登录页面
+当前在线人数：2
+有人来了
+当前状态未登录，重定向到登录页面
+当前在线人数：1
+有人走了
+当前在线人数：0
+有人走了
+2021-08-26 13:09:06.571  INFO 9690 --- [nio-8080-exec-1] o.apache.coyote.http11.Http11Processor   : Error parsing HTTP request header
+ Note: further occurrences of HTTP request parsing errors will be logged at DEBUG level.
+
+java.lang.IllegalArgumentException: Invalid character found in method name [0x160x030x030x000x880x010x000x000x840x030x03a'!0xf20xe50xb70xe3&0xab0xe3CN0xe2(0xac0x0dg0xb50xcf0x180xd6!0x1e0xd40x84-0x840xb7@0xdb0xcd0x170x000x000x160xc00x140x0050xc00x130x00/0xc0,0xc0+0xc000x000x9d0xc0/0x000x9c0x000x0a0x010x000x00E0x000x0a0x000x160x000x140x000x170x000x180x000x190x000x090x000x0a0x000x0b0x000x0c0x000x0d0x000x0e0x000x160x000x0b0x000x020x010x000x000x0d0x000x1c0x000x1a0x060x030x060x010x050x030x050x010x040x030x040x010x040x020x030x030x030x010x030x020x020x030x020x010x020x020xff0x010x000x010x00...]. HTTP method names must be tokens
+	at org.apache.coyote.http11.Http11InputBuffer.parseRequestLine(Http11InputBuffer.java:419) ~[tomcat-embed-core-9.0.50.jar!/:na]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:269) ~[tomcat-embed-core-9.0.50.jar!/:na]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65) [tomcat-embed-core-9.0.50.jar!/:na]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:893) [tomcat-embed-core-9.0.50.jar!/:na]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1723) [tomcat-embed-core-9.0.50.jar!/:na]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) [tomcat-embed-core-9.0.50.jar!/:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [na:1.8.0_202]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [na:1.8.0_202]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-9.0.50.jar!/:na]
+	at java.lang.Thread.run(Thread.java:748) [na:1.8.0_202]
+
+2021-08-26 14:17:27.496  INFO 9690 --- [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2021-08-26 14:17:27.513  INFO 9690 --- [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

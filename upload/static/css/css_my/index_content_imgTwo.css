@@ -1,0 +1,18 @@
+
+/*当博客信息中有两张图片的样式时*/
+.content_img_two{
+    width: 230px;
+    height: 170px;
+    float: left;
+    margin-right: 10px;
+    border-radius: 10px;
+}
+/*当图片有三张及以上的情况*/
+.content_img_ss{
+    width: 150px;
+    height: 110px;
+    float: left;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+}

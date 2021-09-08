@@ -1,0 +1,117 @@
+/*正文部分显示文章的css样式*/
+
+/*引入的css样式*/
+/*右侧正文区**********************************/
+.main_body{
+    width: 650px;
+    height: auto;
+    background-color: #ffffff;
+    border-radius: 5px;
+    margin-top: 10px;
+
+}
+.text_main_body{
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 610px;
+    height: auto;
+    position: relative;
+    overflow: hidden;
+}
+.text_main_body>div{
+    float: left;
+    color: #333;
+}
+.user_img_head{
+    width: 50px;
+    height: auto;
+    position: relative;
+}
+.user_img_head>span>img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+/*正文部分用户昵称的样式*/
+.user_user_nick{
+    font-size: 16px;
+    color: #111111;
+    margin-bottom: 5px;
+    font-weight: bolder;
+}
+/*正文部分用户发表日期的样式*/
+.user_new_data{
+    font-size: 12px;
+    color: #808080;
+    margin-bottom: 5px;
+}
+/*正文内容的部分样式*/
+.user_user_content{
+    font-size:14px;
+    color: #333;
+    padding-right: 20px;
+}
+.main_body_content{
+    width:550px;
+    height: auto;
+    margin-left: 10px;
+}
+/*正文图片承载的div设置上外边距*/
+.user_user_img{
+    margin-top: 10px;
+}
+/*正文图片的样式*/
+.content_img{
+    width: 400px;
+    height: 250px;
+    border-radius: 8px;
+}
+
+/*转发点赞的body*/
+.give_body{
+    width: 650px;
+    height: auto;
+
+
+}
+.give_body>ul{
+    width: 100%;
+    height: auto;
+}
+.give_body>ul>li{
+    float: left;
+    width: 70px;
+    line-height: 40px;
+    margin: 0 70px;
+}
+.give_body>ul>li{
+    color: #808080;
+    font-size: 13px;
+    text-decoration: none;
+}
+.fa_1{
+    color: #808080;
+    font-size: 13px;
+    margin-right: 5px;
+}
+
+/*鼠标移入时的效果*/
+.give_body>ul>li:hover{
+    color: orange;
+    /*鼠标变小手的样式*/
+    cursor: pointer;
+}
+.give_body>ul>li:hover>i{
+    color: orange;
+    /*鼠标变小手的样式*/
+    cursor: pointer;
+}
+
+.iconfont_size{
+    font-size: 18px;
+}
+.all_margin_right{
+    margin-right: 5px;
+}

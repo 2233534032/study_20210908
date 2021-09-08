@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>消息</title>
+</head>
+
+<link rel="stylesheet" href="./static/css/all.css">
+<!--顶部导航栏的css-->
+<link rel="stylesheet" href="./static/css/css_my/index_nav.css">
+<!--公共的样式-->
+<link rel="stylesheet" href="./static/css/css_my/index_public.css">
+<!--中间内容区部分-->
+<link rel="stylesheet" href="./static/css/css_my/index_content.css">
+<!--中间部分显示文章的样式-->
+<link rel="stylesheet" href="./static/css/css_my/index_center.css">
+<!--正文部分右侧热搜榜样式-->
+<link rel="stylesheet" href="./static/css/css_my/index_content_right.css">
+<!--评论区样式-->
+<link rel="stylesheet" href="./static/css/css_my/index_comment.css">
+<!--阿里图标字体-->
+<link rel="stylesheet" href="./static/css/alifont/iconfont.css">
+<!--提示信息的弹框-->
+<link rel="stylesheet" href="./static/css/css_my/hint_msg.css">
+
+<link rel="stylesheet" href="./static/css/css_my/index_content_imgTwo.css">
+<!--message_center自己的样式-->
+<link rel="stylesheet" href="./static/css/css_my/message_center.css">
+<!--隐藏的回复评论的窗口样式-->
+<link rel="stylesheet" href="./static/css/css_my/reply_comment.css">
+<!--vip图标的样式-->
+<link rel="stylesheet" href="./static/css/css_my/vip.css">
+
+<style>
+    .content_img_callback_div{
+        width: 100%;
+        height: auto;
+        display: none;
+
+    }
+    .input_div_blogs{
+        width: 100%;
+        height: 30px;
+        top: 95px;
+        margin:0;
+    }
+    /*回显图片的大小*/
+    .content_img_callback_img{
+        margin-left: 15px;
+        margin-right: 20px;
+        width: 100px;
+        height: 100px;
+        border-radius: 10px;
+    }
+    .content_img_callback_div>ul>li{
+        float: left;
+        position: relative;
+    }
+    /*当鼠标移入图片中时显示的效果*/
+    .content_img_callback_img:hover+span,.content_img_callback_img+span:hover{
+        /*鼠标变小手的样式*/
+        cursor: pointer;
+        display: block;
+    }
+    /*回显图片中的删除字样的位置和显示的效果*/
+    .delete_img{
+        display: none;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        width: 80px;
+        height: 30px;
+        color: #111111 ;
+        font-size: 13px;
+        text-align: center;
+        line-height: 30px;
+        background-color: #dddddd;
+        opacity:0.7;
+    }
+
+
+    /*以下是评论的提示信息的样式*/
+
+    .message_center_huifu_dianzan_he_dianzan{
+        width: auto;
+        height: 40px;
+        position: relative;
+    }
+    .message_center_huifu_dianzan_he_dianzan>ul{
+        height: 40px;
+    }
+    .message_center_huifu_dianzan_he_dianzan>ul>li{
+        line-height: 40px;
+        float: left;
+        width: 100px;
+    }
+
+    .user_huifu_xinxi{
+        font-size: 12px;
+        color: #808080;
+        margin-left: 10px;
+    }
+    .huifu_i_tubiao{
+        color: #808080;
+        font-size: 18px;
+    }
+
+    .message_center_huifu_dianzan_he_dianzan>ul>li:last-child{
+        margin-left: 180px;
+
+    }
+    div.d1{
+        cursor: pointer;
+    }
+
+    .message_lishixinxi_div{
+        width: 650px;
+        height: 30px;
+        background-color: #fff;
+
+    }
+
+    .lishixinxi_div{
+        width: 100px;
+        height: 20px;
+        background-color: orange;
+        text-align: center;
+        line-height: 20px;
+        border-radius: 20px;
+        color: #fff;
+        font-size: 12px;
+    }
+    .topSearch_page:hover{
+        cursor: pointer;
+    }
+
+
+
+
+</style>
+
+<script type="text/javascript" src="./static/js/jquery-1.7.2.js"></script>
+<!--message_center的js代码-->
+<script type="text/javascript" src="./static/js/message_center.js"></script>
+
+
+<body th:inline="text">
+
+
+
+<!--页面div-->
+<div class="body_div" >
+    <!--顶部导航栏-->
+    <div class="nav_bar">
+        <!--搜索框-->
+        <div class="seek_div"><input type="text" placeholder="白色星期五"> <i class="fa fa-search" aria-hidden="true" style="color: orange;font-size: 20px"></i></div>
+        <!--导航栏-->
+        <div class="top_nav_bars">
+                <div class=""><a href="index" class="center_my"><i class="iconfont icon-home" aria-hidden="true"></i></a></div>
+                <div><a href="" class="center_my"><i class=" iconfont icon-shipin" aria-hidden="true"></i></a></div>
+                <div><a href="" class="center_my"><i class="iconfont icon-redu" aria-hidden="true"></i></a></div>
+                <div><a href="message_center" class="center_my"><i class="iconfont icon-sixin" aria-hidden="true"></i></a></div>
+        </div>
+        <!--用户信息-->
+
+        <div class="user_mes_div all_float all_position">
+            <!--未登录显示的-->
+            <div th:if="${session.user==null}">
+                <a href="toLogin" class="log_in color_hover_orange"><i class="iconfont icon-denglu"></i> 请登录</a>
+            </div>
+            <!--已登录状态显示的-->
+            <div th:if="${session.user!=null}" class="height_error  user_message" th:id="${session.user.id}">
+                <a href="user_index_new" class="center_my"><img id="index_user_HeadImg_nav" src=""  alt=""></a>
+                <span class='user_head_nav_img_vip user_head_vip_span_userId_'><i class='iconfont icon-v user_head_vip_logo'></i></span>
+            </div>
+        </div>
+
+    </div>
+    <!--内容区-->
+    <div class="content_div height_error">
+        <!--左边的内容区-->
+        <div class="content_left all_float">
+            <div class="d2"><h2 class="index_font">消息</h2></div>
+            <div class="d1">
+                <span  class="font_style color_hover_orange message_left_click_zan">
+                    <i class="iconfont icon-dianzan message_alyun_size"></i>
+                    <span class="message_nav_span_font">赞</span>
+                    <i class="iconfont icon-hongdian message_nav_4_span"></i>
+                </span>
+            </div>
+            <div class="d1">
+                <span  class="font_style color_hover_orange message_left_a_click">
+                    <i class="iconfont icon-xinxi message_alyun_size"></i>
+                    <span class="message_nav_span_font">评论</span>
+                    <i class="iconfont icon-hongdian message_nav_1_span"></i>
+                </span>
+            </div>
+            <div class="d1">
+                <span class="font_style color_hover_orange">
+                    <i class="iconfont icon-sixin message_alyun_size"></i>
+                    <span class="message_nav_span_font">私信</span>
+                    <i class="iconfont icon-hongdian message_nav_2_span"></i>
+                </span>
+            </div>
+            <div class="d1">
+                <span class="font_style color_hover_orange">
+                    <i class="iconfont icon-zhuanfafasong-3 message_alyun_size"></i>
+                    <span class="message_nav_span_font">转发</span>
+                    <i class="iconfont icon-hongdian message_nav_3_span"></i>
+                </span>
+            </div>
+        </div>
+
+        <!--中间的内容区-->
+        <div class="message_center_content_center all_float">
+            <!--中间部分，需要直接追加到这个div里面-->
+            <div class='message_center_zhuijia_div'>
+                <!--没有数据的情况-->
+                <div class='message_not_unread_message'>
+                        <span><i class='iconfont icon-gantanhao gantanhao'></i>暂无数据</span>
+                </div>
+
+               <!-- &lt;!&ndash;单个小内容&ndash;&gt;
+                <div class="message_center_content_div">
+                    <div class="message_center_single_div" >
+                        &lt;!&ndash;用户头像的div&ndash;&gt;
+                        <div class='height_error'>
+                            <div class='message_center_dianzan_userHead user_head_img_yuanxing message_center_float_left'>
+                                <a href=""><img class='user_head_img_yuanxing ' src="./title/bj.jpg" alt=""></a>
+                            </div>
+                            &lt;!&ndash;点赞用户的昵称 点赞时间&ndash;&gt;
+                            <div class =' message_center_user_nick_data_div  message_center_float_left'>
+                                <p class='message_center_user_nick '>@admin</p>
+                                <p class="message_center_user_dianzan_date ">2021-09-01</p>
+                            </div>
+                        </div>
+                        &lt;!&ndash;赞了这条说说&ndash;&gt;
+                        <div>
+                            <p class='message_center_content_p'>点赞了这条说说</p>
+                        </div>
+                        &lt;!&ndash;被点赞的内容&ndash;&gt;
+                        <div class='message_center_beidianzande_neiRong'>
+                            &lt;!&ndash;图片&ndash;&gt;
+                            <div class='message_center_float_left'>
+                                <a href=""><img class='message_center_beidianzan_img' src='./title/bj.jpg' alt=""></a>
+                            </div>
+                            &lt;!&ndash;昵称和内容&ndash;&gt;
+                            <div class='message_center_float_left nick_and_contetn_div'>
+                                <a href="">
+                                    <p class='message_center_beidianzan_nice'>@admin</p>
+                                </a>
+                                <a href="">
+                                    <p class='message_center_beidianzan_content'>这是发表的动态的内容,测试有很多文字的情况下，这个显示是什么样的，所以需要很多的文字，是在不知道写什么了</p>
+                                </a>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>-->
+            </div>
+        </div>
+        <!--右边的内容区-->
+        <div class="content_right all_float">
+            <div class="right_content_title">
+                <span>热搜榜</span>
+            </div>
+            <!--热搜榜单-->
+            <div class="hos_list">
+              <!--  <div><span id='' class='color_hover_orange topSearch_page'></span></div>-->
+            </div>
+            <div class="up_hos_list">
+                <a href="">刷新榜单</a>
+            </div>
+        </div>
+    </div>
+    <!--背景变暗-->
+    <div id="shadow" class="new_shadow_css"></div>
+
+</div>
+<!--提示信息的弹框-->
+<div id="hint_msg"><span class="msg_span_1"></span></div>
+
+<!--弹出新的窗口，这是回复评论的窗口-->
+<div id="windows_comment" class="new_windows_css_comment">
+    <!--title-->
+    <div class="comment_title_div">
+        <h3>回复****</h3>
+    </div>
+    <!--输入框-->
+    <div class="all_float  windows_comment_input">
+        <textarea placeholder="发表你的看法"></textarea>
+    </div>
+    <!--发布按钮-->
+    <div class="all_float btn_ok_t_comment comment_cu">
+        <input class="comment_cu  comment_button_tijiao" type="button" value="提交">
+    </div>
+    <!--确认取消的按钮-->
+    <div class="button_div_i">
+        <ul>
+            <li>
+                <button id="on_cancel" class="cancel comment_cu">取消</button>
+            </li>
+        </ul>
+    </div>
+</div>
+
+
+
+
+<script type="text/javascript">
+
+</script>
+
+</body>
+</html>

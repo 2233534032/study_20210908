@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+    <mapper> 标签：当前xml文件的根标签
+        namespace：命名空间，唯一值，可以是自定义字符串，但是一般开发都使用映射的Dao接口的全类名
+    <select> :表示指定的是查询
+        id: 一般写执行该语句的方法名，可以自定义字符串，不推荐
+        resultType：表示结果类型，是执行sql语句后得到的ResultSet 一般写的都是封装结果的类的全类名
+    <update> ：表示是更新操作
+    <insert> :表示是插入操作
+    <delete>：表示删除操作
+-->
+<mapper namespace="com.study.dao.GiveDao">
+    <!--&lt;!&ndash;  查询student中所有的数据 &ndash;&gt;
+    <select id="findStudent" resultType="com.study.domain.Student">
+        select id,name,email,age from student order by id
+    </select>
+
+    &lt;!&ndash;添加数据操作&ndash;&gt;
+    <insert id="insertStudent">
+        insert into student values(#{id},#{name},#{email},#{age})
+    </insert>-->
+
+    <select id="findGiveByUserId" resultType="Give">
+        select id,blog_id blogId,user_id userId,blog_user_id blogUserId,give_date giveDate,state
+        from blog_give
+        where  blog_user_id=#{blogUserId} and state=#{state} and user_id!=blog_user_id
+        order by give_date desc
+    </select>
+
+<!--获取未读消息的数量-->
+    <select id="findUserUnReadMessageCount" resultType="int">
+        select count(*)
+        from blog_give
+        where blog_user_id=#{userId} and state=#{state} and user_id!=blog_user_id
+    </select>
+
+    <!--清除未读点赞信息-->
+    <update id="clearGiveMessage">
+        update blog_give
+        set state=1
+        where blog_user_id =#{userId}
+    </update>
+
+    <!--删除数据-->
+    <delete id="deleteGiveByBlogId">
+        delete from blog_give
+        where blog_id=#{blogId}
+    </delete>
+
+    <!--son_comment表的点赞事件-->
+    <update id="sonCommentGive">
+        update son_comment set give=give+1
+        where id=#{id}
+    </update>
+    <!--向son_comment_give表中插入点赞相信数据-->
+    <insert id="addSonCommentGive">
+        insert into son_comment_give(user_id,son_comment_id,give_date)
+        values(#{userId},#{sonCommentId},#{giveDate})
+    </insert>
+
+    <!--通过userId和sonCommentId匹配数据-->
+    <select id="findSonComentGiveByUserIdAndSonCommentId" resultType="int">
+        select count(*) from son_comment_give
+        where user_id=#{userId} and son_comment_id=#{sonCommentId}
+    </select>
+
+    <!--son_comment_reply表的点赞事件-->
+    <update id="replySonCommentGIve">
+        update son_comment_reply set give=give+1
+        where id=#{id}
+    </update>
+
+    <!--向son_comment_reply_give表中添加点赞数据-->
+    <insert id="addSonCommentReplyGive">
+        insert into son_comment_reply_give(son_comment_reply_id,user_id,give_date)
+        values(#{sonCommentReplyId},#{userId},#{giveDate})
+    </insert>
+
+    <select id="findSonCommentReplyGiveByUserIdAndSonCommentReplyId" resultType="int">
+        select count(*)
+        from son_comment_reply_give
+        where son_comment_reply_id=#{sonCommentReplyId} and user_id=#{userId}
+    </select>
+
+
+
+</mapper>
+

@@ -1,0 +1,26 @@
+
+
+/*全局的提示信息*/
+#hint_msg {
+    width: 130px;
+    height:50px;
+    position: fixed;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    top:180px;
+    display: none;
+    font-size: 20px;
+    background-color: #e5e6eb;
+    opacity:0.8;
+    border-radius: 10px;
+    z-index: 9999;
+}
+.msg_span_1{
+    position: absolute;
+    top:12px;
+    left:27px;
+    color: #111;
+    font-size: 20px;
+    z-index: 9999;
+}

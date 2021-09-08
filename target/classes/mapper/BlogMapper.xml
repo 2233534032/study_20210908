@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+    <mapper> 标签：当前xml文件的根标签
+        namespace：命名空间，唯一值，可以是自定义字符串，但是一般开发都使用映射的Dao接口的全类名
+    <select> :表示指定的是查询
+        id: 一般写执行该语句的方法名，可以自定义字符串，不推荐
+        resultType：表示结果类型，是执行sql语句后得到的ResultSet 一般写的都是封装结果的类的全类名
+    <update> ：表示是更新操作
+    <insert> :表示是插入操作
+    <delete>：表示删除操作
+-->
+<mapper namespace="com.study.dao.BlogDao">
+    <!--&lt;!&ndash;  查询student中所有的数据 &ndash;&gt;
+    <select id="findStudent" resultType="com.study.domain.Student">
+        select id,name,email,age from student order by id
+    </select>
+
+    &lt;!&ndash;添加数据操作&ndash;&gt;
+    <insert id="insertStudent">
+        insert into student values(#{id},#{name},#{email},#{age})
+    </insert>-->
+
+
+
+
+
+
+    <!--获取自己发blog-->
+    <select id="findMyBlog" resultType="IndexContent">
+       select u.id userId,u.username,u.user_head userHead,b.id blogId,b.content_img contentImg,b.main_body mainBody,b.new_date newDate
+       from b_user u,blog b
+       where u.id=b.user_id and b.user_id=#{userId}
+       order by newDate desc
+       limit #{pageCount},#{pageSize}
+    </select>
+
+    <!--获取首页的推荐也的数据-->
+    <select id="findIndexContent" resultType="IndexContent">
+       select u.id userId,u.username,u.user_head userHead,b.id blogId,b.content_img contentImg,b.main_body mainBody,b.new_date newDate
+       from b_user u,blog b
+       where u.id=b.user_id
+       order by newDate desc
+       limit #{pageCount},#{pageSize}
+    </select>
+
+    <!--根据id获取博客-->
+    <select id="findBlogById" resultType="Blog">
+        select id,user_id userId,main_body mainBody,new_date newDate,content_img contentImg,blog_give blogGive
+        from blog
+         where id=#{blogId}
+    </select>
+
+    <!--发表博客-->
+    <insert id="addBlog" >
+        insert into blog(user_id,main_body,new_date,content_img) values(#{userId},#{content},#{newDate},#{filePath})
+    </insert>
+
+    <!--点赞-->
+    <insert id="addGive">
+        insert into blog_give(blog_id,user_id,blog_user_id,give_date,state)
+        values(#{blogId},#{userId},#{blogUserId},#{giveDate},#{state})
+    </insert>
+
+    <!--更新博客点赞数量-->
+    <update id="updateGiveCount">
+        update blog set blog_give=blog_give+1 where id=#{blogId}
+    </update>
+    <!--根据id获取点赞总数-->
+    <select id="getBlogGiveCount" resultType="int">
+        select blog_give from blog where id=#{blogId}
+    </select>
+
+    <!--根据用户id和blogId查询用户是否已经点赞-->
+    <select id="findUserIsGive" resultType="int">
+        select count(*) from blog_give where user_id=#{userId} and blog_id=#{blogId}
+    </select>
+
+    <!--根据博客id获取评论的总数-->
+    <select id="findBlogCommentCount" resultType="int">
+        select count(*) from blog_comment where blog_id=#{blogId}
+    </select>
+
+    <!--获取博客总数-->
+    <select id="findBlogCount" resultType="int">
+        select count(*) from blog
+    </select>
+
+    <!--根据userId获取单个用户发博的总数-->
+    <select id="findMyBlogCount" resultType="int">
+        select count(*) from blog where user_id=#{userId}
+    </select>
+
+
+
+    <!--根据用户id获取用户最新发布的博客数据-->
+    <select id="findBlogByUserId" resultType="IndexContent">
+       select u.id userId,u.username,u.user_head userHead,b.id blogId,b.content_img contentImg,b.main_body mainBody,b.new_date newDate
+       from b_user u,blog b
+       where u.id=b.user_id and b.user_id=#{userId}
+       order by newDate desc
+       limit 1
+    </select>
+
+
+    <!--获取伪热搜数据-->
+    <select id="findIndexSearchData" resultType="Blog">
+        select id,user_id userId,main_body mainBody,new_date newDate,content_img contentImg,blog_give blogGive
+        from blog
+        where user_id=1
+        order by new_date desc
+        limit 0,10
+    </select>
+
+
+    <!--删除blog-->
+    <delete id="deleteBlog">
+        delete from blog
+        where id=#{blogId}
+    </delete>
+
+
+</mapper>
+

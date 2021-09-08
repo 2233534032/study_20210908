@@ -1,0 +1,143 @@
+
+/*login页面的样式*/
+
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+}
+
+
+/*登录框的位置和样式*/
+.login_input_div{
+    width: 480px;
+    height: 544px;
+    background: rgba(255,255,255,0.9);
+    float: right;
+    position: absolute;
+    right: 100px;
+    top: 60px ;
+    border-radius: 20px;
+}
+
+/*一些公共的样式*/
+.login_color_font_size{
+    font-size: 14px;
+    color: #333333;
+}
+
+/**/
+.login_form_div{
+    margin-top: 40px;
+}
+.login_title_div{
+
+    margin-left:40px
+}
+/*欢迎登录的字样式*/
+.login_title_div>h2{
+    font-size: 30px;
+}
+/*已有账号的样式*/
+.login_to_registry_div{
+    margin-left:40px;
+    font-size: 14px;
+    color: #9B9B9B;
+}
+.login_input_form_div{
+    margin-top: 20px;
+}
+/*取消输入框默认的样式*/
+.login_input_default{
+    outline: none;
+    border: none;
+}
+
+
+.login_input_input{
+    width: 321px;
+    height: 39px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: 1px solid #fff;
+
+}
+
+/*输入框label标签样式*/
+.input_left_label{
+    display: block;
+    width: 82px;
+    height: 40px;
+    line-height: 40px;
+    float: left;
+    text-align: right;
+    margin-right: 10px;
+}
+/*验证码框的样式*/
+.login_code_input{
+    width: 184px;
+    height: 39px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: 1px solid #fff;
+}
+
+/*输入框的鼠标移入的样式*/
+.login_input_input:hover,
+.login_code_input:hover{
+    border: 1px solid #3f89ec;
+}
+
+/*按钮框鼠标移入效果*/
+.login_login_button:hover{
+    cursor: pointer;
+}
+/*获取验证码按钮的样式*/
+.login_code_button:hover{
+    cursor: pointer;
+    border: 1px solid #3f89ec;
+    color: #3f89ec;
+}
+
+
+/*获取验证码按钮的样式*/
+.login_code_button{
+    width: 131px;
+    height: 40px;
+    background-color: #fff;
+}
+/*输入框p标签的样式*/
+.login_input_p{
+    margin-top: 10px;
+    margin-bottom: 32px;
+}
+
+/*登录按钮*/
+.login_login_button{
+    margin-left: 35px;
+    width: 399px;
+    height: 50px;
+    background-color: #3f89ec;
+    border-radius: 25px;
+    font-size: 16px;
+    color: #fff;
+}
+
+/*登录页广告的样式*/
+
+.login_advertising_div{
+    width: 500px;
+    height: 500px;
+    float: left;
+    position: absolute;
+    left: 100px;
+    top: 60px ;
+    color: #ffff;
+}
+.login_advertising_div>div{
+    position: absolute;
+    top: 200px;
+}
+
+

@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>index</title>
+</head>
+
+<link rel="stylesheet" href="./static/css/all.css">
+<!--顶部导航栏的css-->
+<link rel="stylesheet" href="./static/css/css_my/index_nav.css">
+<!--公共的样式-->
+<link rel="stylesheet" href="./static/css/css_my/index_public.css">
+<!--中间内容区部分-->
+<link rel="stylesheet" href="./static/css/css_my/index_content.css">
+<!--中间部分显示文章的样式-->
+<link rel="stylesheet" href="./static/css/css_my/index_center.css">
+<!--正文部分右侧热搜榜样式-->
+<link rel="stylesheet" href="./static/css/css_my/index_content_right.css">
+<!--评论区样式-->
+<link rel="stylesheet" href="./static/css/css_my/index_comment.css">
+<!--阿里图标字体-->
+<link rel="stylesheet" href="./static/css/alifont/iconfont.css">
+<!--提示信息的弹框-->
+<link rel="stylesheet" href="./static/css/css_my/hint_msg.css">
+
+<link rel="stylesheet" href="./static/css/css_my/index_content_imgTwo.css">
+<!--重构的评论区评论的样式-->
+<link rel="stylesheet" href="./static/css/css_my/update_comment_index.css">
+<!--点击图片时的放大效果-->
+<link rel="stylesheet" href="./static/css/css_my/img_click_style.css">
+<!--回复评论的隐藏弹框的样式-->
+<link rel="stylesheet" href="./static/css/css_my/huifu_pinglun_style.css">
+<!--vip图标的样式-->
+<link rel="stylesheet" href="./static/css/css_my/vip.css">
+
+<style>
+
+    .content_img_callback_div{
+        width: 100%;
+        height: auto;
+        display: none;
+    }
+    .input_div_blogs{
+        width: 100%;
+        height: 30px;
+        top: 95px;
+        margin:0;
+    }
+    /*回显图片的大小*/
+    .content_img_callback_img{
+        margin-left: 15px;
+        margin-right: 20px;
+        width: 100px;
+        height: 100px;
+        border-radius: 10px;
+    }
+    .content_img_callback_div>ul>li{
+        float: left;
+        position: relative;
+    }
+
+    /*当鼠标移入图片中时显示的效果*/
+    .content_img_callback_img:hover+span,.content_img_callback_img+span:hover{
+        /*鼠标变小手的样式*/
+        cursor: pointer;
+        display: block;
+    }
+
+    /*回显图片中的删除字样的位置和显示的效果*/
+    .delete_img{
+        display: none;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        width: 80px;
+        height: 30px;
+        color: #111111 ;
+        font-size: 13px;
+        text-align: center;
+        line-height: 30px;
+        background-color: #dddddd;
+        opacity:0.7;
+    }
+
+    /*消息提示*/
+    .index_message_hint{
+        display: none;
+        position: relative;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background-color: red;
+        top: 13px;
+        right: -33px;
+        z-index: 15;
+    }
+    .index_message_hint>span{
+        position: absolute;
+        top:-22px;
+        right: 3px;
+        font-size: 5px;
+    }
+
+    .cursor_hover{
+        cursor: pointer;
+    }
+    .topSearch_page:hover{
+        cursor: pointer;
+    }
+
+    /*关注按钮*/
+    .index_user_guanzhu_div{
+        float: right;
+    }
+    .home_div_button {
+        width: 60px;
+        line-height: 25px;
+        border-radius: 20px;
+        background-color: orange;
+        border: 1px solid orange;
+        color: #ffffff;
+    }
+    /*热的字样*/
+    div>div>.index_right_hos_span_re{
+        position: absolute;
+        top:10px;
+        right: 0;
+        width: 16px;
+        height: 16px;
+        line-height: 16px;
+        background-color: orangered;
+        color: #ffffff;
+        text-align: center;
+        border-radius: 3px;
+    }
+
+    .hos_list_div{
+        position: relative;
+    }
+
+
+
+</style>
+
+<script type="text/javascript" src="./static/js/jquery-1.7.2.js"></script>
+<!--index页的js-->
+<script type="text/javascript" src="./static/js/index.js"></script>
+<body >
+<!--页面div-->
+<div class="body_div" >
+    <!--顶部导航栏-->
+    <div class="nav_bar">
+        <!--搜索框-->
+        <div class="seek_div"><input type="text" placeholder="白色星期五"> <i class="fa fa-search" aria-hidden="true" style="color: orange;font-size: 20px"></i></div>
+        <!--导航栏-->
+        <div class="top_nav_bars">
+                <div class=""><a href="#" class="center_my"><i class="iconfont icon-home" aria-hidden="true"></i></a></div>
+                <div><a href="" class="center_my"><i class=" iconfont icon-shipin" aria-hidden="true"></i></a></div>
+                <div><a href="" class="center_my"><i class="iconfont icon-redu" aria-hidden="true"></i></a></div>
+                <div class="index_message_div"><a href="message_center" class="center_my"><i class="iconfont icon-sixin" aria-hidden="true"></i></a>
+                    <div class="index_message_hint">
+                    </div>
+                </div>
+        </div>
+        <!--用户信息-->
+
+        <div class="user_mes_div all_float all_position">
+            <!--未登录显示的-->
+            <div th:if="${session.user==null}">
+                <a href="toLogin" class="log_in color_hover_orange"><i class="iconfont icon-denglu"></i> 请登录</a>
+            </div>
+            <!--已登录状态显示的-->
+            <div th:if="${session.user!=null}" class="height_error  user_message" th:id="${session.user.id}">
+                <a href="user_index_new" class="center_my"><img id="index_user_HeadImg_nav" src=""  alt=""></a>
+                <span class='user_head_nav_img_vip user_head_vip_span_userId_'><i class='iconfont icon-v user_head_vip_logo'></i></span>
+            </div>
+        </div>
+
+    </div>
+    <!--内容区-->
+    <div class="content_div height_error">
+        <!--左边的内容区-->
+        <div class="content_left all_float">
+            <div><h2 class="index_font">首页</h2></div>
+            <div class="d1">
+                <a href="" class="font_style color_hover_orange">全部关注</a>
+            </div>
+            <div class="d1"><a href="" class="font_style color_hover_orange">最新微博</a></div>
+            <div class="d1"><a href="" class="font_style color_hover_orange">特别关注</a></div>
+            <div class="d1"><a href=" "class="font_style color_hover_orange">好友圈</a></div>
+        </div>
+        <!--中间的内容区-->
+        <div class="content_center all_float">
+            <!--内容编辑区-->
+            <div class="content_top height_error">
+                <div class="height_error" style="height: 130px;">
+                    <form class="height_error" id="blog_form" action="" method="post" enctype="multipart/form-data" style="height: 120px;">
+                        <textarea class="content_input_text center_my" value="" name="content" placeholder="有什么新鲜事想分享给大家？"></textarea>
+                        <div class="input_div_blogs center_my">
+                            <div class=" file_upload">
+                                <input id="fileUpload" type="file" name="file" value="">
+                            </div>
+                            <div class="all_float btn_ok">
+                                <input id="blogs" type="button" value="提交">
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+                <!--回显图片-->
+                <div class="content_img_callback_div">
+                    <!--图片集合的列表-->
+                    <ul class="content_img_callback_div_ul">
+                       <!-- <li><img class="content_img_callback_img" src="./content/default.jpg" alt=""></li>
+                        <li><img class="content_img_callback_img" src="./content/default.jpg" alt=""></li>
+                        <li><img class="content_img_callback_img" src="./content/default.jpg" alt=""></li>
+                        <li><img class="content_img_callback_img" src="./content/default.jpg" alt=""></li>
+                        <li><img class="content_img_callback_img" src="./content/default.jpg" alt=""></li>-->
+                    </ul>
+
+                </div>
+            </div>
+
+            <div class="content_all">
+               <!-- 当图片有两张的情况内容的小正文区(里面有评论区源码)-->
+              <!--  <div class="main_body">
+                    &lt;!&ndash;内容区&ndash;&gt;
+                    <div class="text_main_body">
+                        &lt;!&ndash;头像&ndash;&gt;
+                        <div class="user_img_head">
+                            <span ><img src="./title/head_photo.jpg" alt=""></span>
+                            <span class='user_head_vip_span user_head_vip_span_userId_'><i class='iconfont icon-v user_head_vip_logo'></i></span>
+                        </div>
+                        &lt;!&ndash;内容区&#45;&#45;昵称-发布时间-正文-图片等&ndash;&gt;
+                        <div class="main_body_content">
+                            <div class="user_user_nick" >
+                                <span>用户昵称</span>
+                                <div class="index_user_guanzhu_div "><input class="home_div_button cursor_hover" type="button" value="+关注"></div>
+                            </div>
+
+                            <div class="user_new_data">2021-08-19 21：35：18 来自<span>xx手机型号</span></div>
+
+                            <div class="user_user_content">
+                                <p >
+                                    今天又是美好的一天，晚安我的宝贝， 今天又是美好的一天，晚安我的宝贝 今天又是美好的一天，晚安我的宝贝
+                                </p>
+                            </div>
+                            <div class="user_user_img">
+                                <ul>
+                                    <li><img class="content_img_two" src="./title/bj.jpg" alt=""></li>
+                                    <li><img class="content_img_two" src="./title/bj.jpg" alt=""></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    &lt;!&ndash;转发-点赞&ndash;&gt;
+                    <div class="give_body">
+                        <ul class="height_error">
+                            <li><i class="fa fa-share fa_1" aria-hidden="true"></i>1000+</li>
+                            <li><i class="fa fa-align-left fa_1" aria-hidden="true"></i>999+</li>
+                            <li><i class="fa fa-heart fa_1" aria-hidden="true"></i>10000+</li>
+                        </ul>
+                        <div class='index_comment_all_div'>
+                            &lt;!&ndash;评论区顶部的发表评论的输入框和按钮区域&ndash;&gt;
+                            <div class="user_comment_div height_error">
+                                <div  class="height_error input_btn">
+                                    <div class="comment_div_input center_my ">
+                                        &lt;!&ndash;头像&ndash;&gt;
+                                        <div class="user_comment_img all_float">
+                                            <a href="">
+                                                <img class="user_comment_img" src="./title/head_photo.jpg" alt="">
+                                            </a>
+                                        </div>
+                                        &lt;!&ndash;评论框&ndash;&gt;
+                                        <div class="all_float comment_input">
+                                            <textarea placeholder="发表你的看法"></textarea>
+                                        </div>
+                                        &lt;!&ndash;发布按钮&ndash;&gt;
+                                        <div class="all_float btn_ok_t">
+                                            <input type="button" value="提交">
+                                        </div>
+                                    </div>
+                                </div>
+                                &lt;!&ndash;评论区&ndash;&gt;
+                            </div>
+                            &lt;!&ndash;这个div是用于展示数据时的循环最外层的div&ndash;&gt;
+                            <div class="comment_all" >
+                                &lt;!&ndash;单个评论，没有子评论的情况&ndash;&gt;
+                                <div class='index_comment_content_div height_error'>
+                                    <div class='index_comment_userHead_nick_dateAll'>
+                                        &lt;!&ndash;头像&ndash;&gt;
+                                        <div class="index_comment_user_head all_float">
+                                            <a href='#'>
+                                                <img class='index_comment_user_head_img' src='' alt=''>
+                                            </a>
+                                        </div>
+                                        &lt;!&ndash;包裹评论信息和昵称和时间的div&ndash;&gt;
+                                        <div class='index_comment_content_div_nick_date all_float'>
+                                            &lt;!&ndash;用户昵称和评论&ndash;&gt;
+                                            <div class='index_comment_user_nick '>
+                                                <span>admin</span>
+                                                <span class='index_comment_content_span_1'>:这是我见过最搞笑的</span>
+                                            </div>
+                                            &lt;!&ndash;评论的时间&ndash;&gt;
+                                            <div class='index_comment_comment_date all_float'>
+                                                <span>2021-08-29 21:30:23</span>
+                                            </div>
+                                            &lt;!&ndash;点赞和评论的图标&ndash;&gt;
+                                            <div class='index_comment_user_give_and_comment'>
+                                                <span class='index_comment_comment_i'><i class='iconfont icon-xinxi cursor_hover_color_orange'></i></span>
+                                                <span class='index_comment_give_i cursor_hover_color_orange'><i class='iconfont icon-dianzan cursor_hover_color_orange'></i><span style='font-size: 12px'>0</span></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                &lt;!&ndash;单个评论，有子评论的情况&ndash;&gt;
+                                <div class="index_comment_content_div height_error">
+                                    <div class='index_comment_userHead_nick_dateAll'>
+                                        &lt;!&ndash;头像&ndash;&gt;
+                                        <div class="index_comment_user_head all_float">
+                                            <a href="www.baidu.com">
+                                                <img class='index_comment_user_head_img' src="./title/bj.jpg" alt="">
+                                            </a>
+                                            <span class='user_comment_head_vip_span user_head_vip_span_userId_'><i class='iconfont icon-v user_comment_head_vip_logo'></i></span>
+                                        </div>
+                                        &lt;!&ndash;包裹评论信息和昵称和时间的div&ndash;&gt;
+                                        <div class='index_comment_content_div_nick_date all_float' style="display: block">
+                                            &lt;!&ndash;用户昵称和评论&ndash;&gt;
+                                            <div class='index_comment_user_nick '>
+                                                <span>admin</span>
+                                                <span class='index_comment_content_span_1'>:这是我见过最搞笑的</span>
+                                            </div>
+                                            &lt;!&ndash;评论的时间&ndash;&gt;
+                                            <div class='index_comment_comment_date all_float'>
+                                                <span>2021-08-29 21:30:23</span>
+                                            </div>
+                                            &lt;!&ndash;点赞和评论的图标&ndash;&gt;
+                                            <div class='index_comment_user_give_and_comment'>
+                                                <span class='index_comment_comment_i'><i class='iconfont icon-xinxi cursor_hover_color_orange'></i></span>
+                                                <span class='index_comment_give_i cursor_hover_color_orange'><i class='iconfont icon-dianzan cursor_hover_color_orange'></i><span style="font-size: 12px">0</span></span>
+                                            </div>
+                                        </div>
+                                        &lt;!&ndash;当评论有子评论的情况&ndash;&gt;
+                                           <div class='index_comment_user_son_comment_div all_float'>
+                                               <div class="index_comment_son_comment_div_zi height_error">
+                                                   <div class='index_comment_content_div_nick_date all_float'>
+                                                       &lt;!&ndash;用户昵称和评论&ndash;&gt;
+                                                       <div class='index_comment_user_nick '>
+                                                           <span>admin</span>
+                                                           <span class='index_comment_content_span_1'>:这是我见过最搞笑的</span>
+                                                       </div>
+                                                       &lt;!&ndash;评论的时间&ndash;&gt;
+                                                       <div class='index_comment_comment_date all_float'>
+                                                           <span>2021-08-29 21:30:23</span>
+                                                       </div>
+                                                       &lt;!&ndash;点赞和评论的图标&ndash;&gt;
+                                                       <div class='index_comment_user_give_and_comment'>
+                                                           &lt;!&ndash;评论&ndash;&gt;
+                                                           <span class='index_comment_comment_i'><i class='iconfont icon-xinxi cursor_hover_color_orange'></i></span>
+                                                           &lt;!&ndash;点赞&ndash;&gt;
+                                                           <span class='index_comment_give_i cursor_hover_color_orange' onclick="sonGive(this)"><i class='iconfont icon-dianzan cursor_hover_color_orange'></i><span style="font-size: 12px">0</span></span>
+                                                       </div>
+                                                   </div>
+                                               </div>
+                                           </div>
+                                    </div>
+                                </div>
+                                &lt;!&ndash;子评论折叠的样式&ndash;&gt;
+                                <div class="index_comment_content_div height_error">
+                                    <div class='index_comment_userHead_nick_dateAll'>
+                                        &lt;!&ndash;头像&ndash;&gt;
+                                        <div class="index_comment_user_head all_float">
+                                            <a href="www.baidu.com">
+                                                <img class='index_comment_user_head_img' src="./title/bj.jpg" alt="">
+                                            </a>
+                                            <span class='user_comment_head_vip_span user_head_vip_span_userId_'><i class='iconfont icon-v user_comment_head_vip_logo'></i></span>
+                                        </div>
+                                        &lt;!&ndash;包裹评论信息和昵称和时间的div&ndash;&gt;
+                                        <div class='index_comment_content_div_nick_date all_float' style="display: block">
+                                            &lt;!&ndash;用户昵称和评论&ndash;&gt;
+                                            <div class='index_comment_user_nick '>
+                                                <span>admin</span>
+                                                <span class='index_comment_content_span_1'>:这是我见过最搞笑的</span>
+                                            </div>
+                                            &lt;!&ndash;评论的时间&ndash;&gt;
+                                            <div class='index_comment_comment_date all_float'>
+                                                <span>2021-08-29 21:30:23</span>
+                                            </div>
+                                            &lt;!&ndash;点赞和评论的图标&ndash;&gt;
+                                            <div class='index_comment_user_give_and_comment'>
+                                                <span class='index_comment_comment_i'><i class='iconfont icon-xinxi cursor_hover_color_orange'></i></span>
+                                                <span class='index_comment_give_i cursor_hover_color_orange'><i class='iconfont icon-dianzan cursor_hover_color_orange'></i><span style="font-size: 12px">0</span></span>
+                                            </div>
+                                        </div>
+                                        &lt;!&ndash;当评论有子评论的情况&ndash;&gt;
+                                        <div class='index_comment_user_son_comment_div all_float'  style="display: block">
+                                            <div class="index_comment_son_comment_div_zi height_error">
+                                                <div class='index_comment_content_div_nick_date all_float'>
+                                                    &lt;!&ndash;用户昵称和评论&ndash;&gt;
+                                                    <div class='index_comment_user_nick '>
+                                                        <span>admin</span>
+                                                        <span class='index_comment_content_span_1 font_hover' style="color: #eb7350"><span style="color:#333;">等人</span>共n条回复 <i class='iconfont icon&#45;&#45;cart-down index_xiangxiajiantou'></i></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>-->
+                <!------------->
+            </div>
+
+        </div>
+        <!--右边的内容区-->
+        <div class="content_right all_float">
+            <div class="right_content_title">
+                <span>热搜榜</span>
+            </div>
+            <!--热搜榜单-->
+            <div class="hos_list">
+                <!--<div class="hos_list_div">
+                    <span id='' class='color_hover_orange   topSearch_page'>是sasadasasa</span><span class="index_right_hos_span_re">热</span>
+                </div>-->
+            </div>
+            <div class="up_hos_list">
+                <a href="">刷新榜单</a>
+            </div>
+        </div>
+    </div>
+<!--提示信息的弹框-->
+    <div id="hint_msg"><span class="msg_span_1"></span></div>
+    <!--弹出的新窗口(这是查看图片的窗口)-->
+    <div id="windows" class="new_windows_css">
+        <!--图片-->
+        <div class="img_block">
+            <img src="" alt="">
+        </div>
+        <!--确认取消的按钮-->
+        <div class="button_div">
+            <ul>
+                <li>
+                    <button class="cancel">关闭</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!--弹出新的窗口，这是回复评论的窗口-->
+    <div id="windows_comment" class="new_windows_css_comment">
+        <!--title-->
+        <div class="comment_title_div">
+            <h3>回复****</h3>
+        </div>
+        <!--输入框-->
+        <div class="all_float  windows_comment_input">
+            <textarea placeholder="发表你的看法"></textarea>
+        </div>
+        <!--发布按钮-->
+        <div class="all_float btn_ok_t_comment comment_cu">
+            <input class="comment_cu  comment_button_tijiao" type="button" value="提交">
+        </div>
+            <!--确认取消的按钮-->
+        <div class="button_div_i">
+            <ul>
+                <li>
+                    <button id="on_cancel" class="cancel comment_cu">取消</button>
+                </li>
+                </ul>
+        </div>
+    </div>
+    <!--弹出新的窗口，这是回复子评论的窗口-->
+    <div id="windows_comment_reply" class="new_windows_css_comment">
+        <!--title-->
+        <div class="comment_title_div">
+            <h3>回复****</h3>
+        </div>
+        <!--输入框-->
+        <div class="all_float  windows_comment_input">
+            <textarea id="new_window_textarea_0" class="reply_comment" placeholder="发表你的看法"></textarea>
+        </div>
+        <!--发布按钮-->
+        <div class="all_float btn_ok_t_comment comment_cu">
+            <input class="comment_cu  reply_comment_tijiao" type="button" value="提交">
+        </div>
+        <!--确认取消的按钮-->
+        <div class="button_div_i">
+            <ul>
+                <li>
+                    <button id="reply_btn" class="cancel comment_cu">取消</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!--弹出的新窗口(这是查看完整子评论的窗口)-->
+    <div id="windows_son_comment_cat" class="new_windows_css" >
+        <!--头部的提示信息-->
+        <div class="son_comment_cat_head">
+            <h3 ></h3>
+        </div>
+        <!--展示评论信息的div-->
+        <div class="son_comment_content_div">
+            <!--单个评论，有子评论的情况-->
+            <div class="index_comment_content_div height_error">
+                <div class='index_comment_userHead_nick_dateAll'>
+                    <!--头像-->
+                    <div class="index_comment_user_head all_float">
+                        <a href="www.baidu.com">
+                            <img class='index_comment_user_head_img  new_son_coment_windows_head_img' src="./title/bj.jpg" alt="">
+                        </a>
+                        <span class='user_comment_head_vip_span user_head_vip_span_userId_ new_windows_son_comment_vip_logo'><i class='iconfont icon-v user_comment_head_vip_logo'></i></span>
+                    </div>
+                    <!--包裹评论信息和昵称和时间的div-->
+                    <div class='index_comment_content_div_nick_date all_float' >
+                        <!--用户昵称和评论-->
+                        <div class='index_comment_user_nick '>
+                            <span class="new_son_comment_windows_username">admin</span>
+                            <span class='index_comment_content_span_1 new_son_comment_windows_content'>:这是我见过最搞笑的</span>
+                        </div>
+                        <!--评论的时间-->
+                        <div class='index_comment_comment_date all_float'>
+                            <span class="new_son_comment_windows_data">2021-08-29 21:30:23</span>
+                        </div>
+                        <!--点赞和评论的图标-->
+                        <div class='index_comment_user_give_and_comment'>
+                            <span class='index_comment_comment_i new_son_comment_click_huifu_span' onclick="comment_to_sonComment(this)"><i class='iconfont icon-xinxi cursor_hover_color_orange'></i></span>
+                            <span class='index_comment_give_i cursor_hover_color_orange new_windows_give_span_1' onclick='comment_toGive(this)'><i class='iconfont icon-dianzan cursor_hover_color_orange'></i><span style="font-size: 12px" class="new_son_comment_windows_give"></span></span>
+                        </div>
+                    </div>
+                    <!--当评论有子评论的情况(子评论和回复就是绘制到这个div下面的)-->
+                    <div class='index_comment_user_son_comment_div all_float  son_comment_new_windows '>
+
+                    </div>
+                </div>
+            </div>
+            <!--底部的提示条-->
+            <div class="son_comment_bottom_div">
+                <div class="son_comment_left"></div>
+                <div class="son_comment_center">没有更多的内容了</div>
+                <div class="son_comment_right"></div>
+            </div>
+        </div>
+    </div>
+    <!--背景变暗-->
+    <div id="shadow" class="new_shadow_css" onclick="shadowOnClick()"></div>
+
+    <div id="shadow_huifu_pinglun" class="new_shadow_css_huifu_pinglun" onclick="shadowOnClick()"></div>
+
+</div>
+
+
+
+<script type="text/javascript">
+
+
+
+     $(function(){
+
+
+
+         /*请求未读消息*/
+         findUserUnReadMessage();
+         /*请求未读的评论信息*/
+         isUnReadComment();
+         /*请求是否有点赞信息的未读消息*/
+         function findUserUnReadMessage(){
+             $.ajax({
+                 type:'post',
+                 url:'unReadMessageCount',
+                 data:{"page":1}
+             }).success(function(result){
+                 console.log(result)
+                 /*200表示有未读*/
+                 if(result.code==200){
+                     $(".index_message_hint").css("display",'block');
+                 }else{
+                     /*没有未读消息*/
+                     $(".index_message_hint").css("display","none");
+                 }
+             })
+         }
+
+         function isUnReadComment(){
+             $.ajax({
+                 type:'post',
+                 url:'isCommentUnRead',
+                 data:{"page":1}
+             }).success(function(result){
+                 console.log(result)
+                 /*200表示有未读*/
+                 if(result.code==200){
+                     $(".index_message_hint").css("display",'block');
+                 }else{
+                     /*没有未读消息*/
+                     $(".index_message_hint").css("display","none");
+                 }
+             })
+         }
+
+
+
+
+     })
+
+
+
+
+
+
+
+</script>
+
+</body>
+</html>

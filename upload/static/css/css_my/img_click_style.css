@@ -1,0 +1,104 @@
+
+
+
+/*点击图片时，弹出隐藏框的样式***************************/
+/*点击头像弹出框的样式*/
+.new_windows_css{
+    padding: 5px;
+    display: none;
+    position: fixed;
+    margin: auto;
+    top: 0px;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 700px;
+    height: 500px;
+    background-color: #fff;
+    z-index: 11;
+    border-radius: 10px;
+}
+
+/*背景变暗的样式*/
+.new_shadow_css{
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    -moz-opacity: 0.6;
+    opacity: .60;
+    filter: alpha(opacity=66);
+    background-color: black;
+    z-index: 5;
+}
+
+.img_block>img{
+    width: 700px;
+    height: 500px;
+    /* background-color: red;*/
+}
+/*按钮的样式和位置*/
+.button_div>ul>li>button{
+    width: 90px;
+    height: 35px;
+    background-color: orange;
+    border-radius: 20px;
+    border: 1px solid orange;
+    color: #fff;
+    margin-left: 320px;
+}
+.button_div>ul>li>button:hover{
+    cursor: pointer;
+}
+
+/*（查看子评论的）按钮的样式和位置*/
+.son_comment_div>ul>li>button{
+    width: 90px;
+    height: 35px;
+    background-color: orange;
+    border-radius: 20px;
+    border: 1px solid orange;
+    color: #fff;
+    margin-left: 320px;
+    position: absolute;
+    bottom: 0;
+}
+
+/*顶部几条记录提示信息的*/
+.son_comment_cat_head{
+    padding-left: 10px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #cccccc;
+}
+
+/*展示评论的div*/
+.son_comment_content_div{
+    width: 700px;
+    height: 450px;
+    overflow: auto;
+}
+
+.son_comment_bottom_div{
+    margin-top: 20px;
+    margin-bottom: 100px;
+    position: relative;
+}
+.son_comment_left{
+    margin-left: 74px;
+    float: left;
+    width: 200px;
+    border-bottom: 1px solid #cccccc;
+}
+.son_comment_center{
+    float: left;
+}
+.son_comment_right{
+    float: left;
+    width: 200px;
+    border-bottom: 1px solid #cccccc;
+}
+
+
+

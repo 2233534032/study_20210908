@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+    <mapper> 标签：当前xml文件的根标签
+        namespace：命名空间，唯一值，可以是自定义字符串，但是一般开发都使用映射的Dao接口的全类名
+    <select> :表示指定的是查询
+        id: 一般写执行该语句的方法名，可以自定义字符串，不推荐
+        resultType：表示结果类型，是执行sql语句后得到的ResultSet 一般写的都是封装结果的类的全类名
+    <update> ：表示是更新操作
+    <insert> :表示是插入操作
+    <delete>：表示删除操作
+-->
+<mapper namespace="com.study.dao.UserDao">
+    <!--&lt;!&ndash;  查询student中所有的数据 &ndash;&gt;
+    <select id="findStudent" resultType="com.study.domain.Student">
+        select id,name,email,age from student order by id
+    </select>
+
+    &lt;!&ndash;添加数据操作&ndash;&gt;
+    <insert id="insertStudent">
+        insert into student values(#{id},#{name},#{email},#{age})
+    </insert>-->
+
+    <insert id="addUser"  >
+        insert into b_user(username,password,registry_date,email) values(#{username},#{password},#{registryDate},#{email})
+    </insert>
+
+    <select id="loginUserByUsernameAndPassword" resultType="User">
+        select id,username,password,gender,registry_date registryDate,birth,email,brief,user_head userHead,bean_vermicelli beanVermicelli,attention from b_user where username=#{username} and password=#{password}
+    </select>
+
+    <select id="findUserById" resultType="User">
+        select id,username,password,gender,registry_date registryDate,birth,email,brief,vip,user_head userHead,bean_vermicelli beanVermicelli,attention from b_user where id=#{id}
+    </select>
+
+    <select id="userIsExist" resultType="User">
+            select id,username,password,gender,registry_date registryDate,birth,email,brief,user_head userHead
+            from b_user
+             where username=#{username}
+    </select>
+
+    <!--根据id更新用户头像的操作-->
+    <update id="updateUserHeadImg">
+        update b_user
+        set user_head=#{path}
+        where id=#{id}
+    </update>
+
+    <!--修改粉丝数量-->
+    <update id="updateBeanVermicelliCount">
+        update b_user
+        set bean_vermicelli=bean_vermicelli+1
+        where id=#{id}
+    </update>
+    <!--修改关注数量-->
+    <update id="updateAttentionCount">
+        update b_user
+        set attention=attention+1
+        where id=#{id}
+    </update>
+
+    <!--以下是操作 user_gz-->
+    <!--添加关注记录-->
+    <insert id="insertAttention">
+        insert into user_gz(user_id,attention_user_id,attention_date,state)values(#{userId},#{attentionUserId},#{attentionDate},#{state})
+    </insert>
+    <!---->
+    <select id="findUserAttentionByUserIdAndAttentionUserId" resultType="int">
+        select count(*)
+        from user_gz
+        where user_id=#{userId} and attention_user_id=#{attentionUserId}
+    </select>
+
+
+</mapper>
+

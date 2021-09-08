@@ -1,0 +1,79 @@
+
+/*重新设置评论区的样式*/
+/*最外层容器的宽高大小等*/
+.index_comment_content_div{
+    width: 600px;
+    height: auto;
+    padding:  10px 25px;
+    position: relative;
+}
+/*汇总的小汇总*/
+.index_comment_userHead_nick_dateAll{
+    height: 41px;
+}
+
+/*头像框div的样式*/
+.index_comment_user_head{
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+}
+/*评论用户头像的标签*/
+.index_comment_user_head_img{
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+}
+/*评论区用户昵称的标签*/
+.index_comment_user_nick{
+    font-size: 12px;
+    color: #eb7350;
+    line-height: 17px;
+
+}
+/*评论区点赞和回复的小图标*/
+.index_comment_user_give_and_comment{
+    line-height: 25px;
+    float: right;
+    position: absolute;
+    right: 50px;
+}
+/*评论时间的标签*/
+.index_comment_comment_date{
+    line-height: 25px;
+    font-size: 12px;
+}
+/*包裹昵称和内容以及时间的div*/
+.index_comment_content_div_nick_date{
+    margin-left: 10px;
+}
+/*评论区具体评论信息的标签*/
+.index_comment_content_span_1{
+    font-size: 12px;
+    color: #333333;
+}
+
+/*这是点击回复评论的图标字体*/
+.index_comment_comment_i{
+    margin-right: 20px;
+    font-size: 13px                                                                                                                                                                        ;
+}
+
+/*鼠标移入的效果*/
+.cursor_hover_color_orange:hover {
+    cursor: pointer;
+    color: orange;
+}
+
+/*子评论框*/
+.index_comment_user_son_comment_div{
+    display: block;
+    width: 570px;
+    height: auto;
+    padding-left: 50px;
+}
+/*子评论框的样式*/
+.index_comment_son_comment_div_zi{
+    height: auto;
+    border-left: 1px solid #dddddd;
+}

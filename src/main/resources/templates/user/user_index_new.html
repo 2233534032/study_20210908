@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>user</title>
+</head>
+
+
+<!--user_index.css-->
+<link rel="stylesheet" href="./static/css/css_my/user_index.css">
+
+<link rel="stylesheet" href="./static/css/alifont/iconfont.css">
+
+<link rel="stylesheet" href="./static/css/all.css">
+<!--顶部导航栏的css-->
+<link rel="stylesheet" href="./static/css/css_my/index_nav.css">
+<!--公共的样式-->
+<link rel="stylesheet" href="./static/css/css_my/index_public.css">
+<!--中间内容区部分-->
+<link rel="stylesheet" href="./static/css/css_my/index_content.css">
+<!--中间部分显示文章的样式-->
+<link rel="stylesheet" href="./static/css/css_my/index_center.css">
+<!--正文部分右侧热搜榜样式-->
+<link rel="stylesheet" href="./static/css/css_my/index_content_right.css">
+<!--评论区样式-->
+<link rel="stylesheet" href="./static/css/css_my/index_comment.css">
+<!--阿里图标字体-->
+<link rel="stylesheet" href="./static/css/alifont/iconfont.css">
+<!--提示信息的弹框-->
+<link rel="stylesheet" href="./static/css/css_my/hint_msg.css">
+
+<link rel="stylesheet" href="./static/css/css_my/index_content_imgTwo.css">
+<!--重构的评论区评论的样式-->
+<link rel="stylesheet" href="./static/css/css_my/update_comment_index.css">
+<!--点击头像弹出修改框的样式-->
+<link rel="stylesheet" href="./static/css/css_my/user/update_userHeadImg.css">
+<link rel="stylesheet" href="./static/css/css_my/vip.css">
+
+
+<style>
+
+    .main_body{
+        margin-top: 0px;
+        margin-bottom: 10px;
+    }
+    .content_left,
+    .content_center,
+    .content_right {
+        margin-top: 60px;
+    }
+
+    .user_index_user_center_head{
+        padding-top: 5px;
+        text-align: center;
+    }
+    .user_index_user_center_head>img{
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+    }
+    .user_index_right_style{
+        margin-left: 10px;
+        margin-right: 10px;
+        margin-bottom: 10px;
+        font-size: 14px;
+    }
+    .icon-youjiantou{
+        font-size: 12px;
+    }
+    /*.user_index_registry_date{
+        border-bottom: 1px solid #e5e6eb;
+    }*/
+    .user_index_update_msg{
+        text-align: center;
+        font-size: 14px;
+    }
+    .user_index_border_date{
+        border-top: 1px solid #e5e6eb;
+    }
+
+    .publicshubiao_ok{
+        cursor: pointer;
+    }
+    .user_index_right_user_style{
+        margin-left: 5px;
+    }
+
+    .user_index_default{
+        width: 650px;
+        height: 200px;
+        text-align: center;
+        background-color: #fff;
+    }
+    .user_index_default>span{
+        margin-top: 90px;
+    }
+
+    /*关注按钮*/
+    .index_user_guanzhu_div{
+        float: right;
+    }
+    .home_div_button {
+        width: 60px;
+        line-height: 25px;
+        border-radius: 20px;
+        background-color: #fff;
+        border: 1px solid #fff;
+        color: #111;
+    }
+
+
+</style>
+
+<script type="text/javascript" src="./static/js/jquery-1.7.2.js"></script>
+<!--index页的js-->
+<script type="text/javascript" src="./static/js/user_index_new.js"></script>
+
+<body >
+
+<!--页面div-->
+<div class="body_div" >
+    <!--顶部导航栏-->
+    <div class="top_nav_bar">
+        <!--左部搜索框-->
+        <div class="search_box">
+            <input type="text" placeholder="ssss">
+        </div>
+        <!--右边导航栏-->
+        <div class="right_nav_bar">
+            <ul>
+                <li><a href="index">首页</a></li>
+                <li><a href="">视频</a></li>
+                <li><a href="">发现</a></li>
+                <li><a href="">游戏</a></li>
+                <li><a href="" >*****个人</a></li>
+            </ul>
+        </div>
+    </div>
+    <!--内容区-->
+    <div class="content_div height_error">
+        <!--左边的内容区-->
+        <div class="content_left all_float">
+            <div><h2 class="index_font">首页</h2></div>
+            <div class="d1">
+                <a href="" class="font_style color_hover_orange">全部关注</a>
+            </div>
+            <div class="d1"><a href="" class="font_style color_hover_orange">最新微博</a></div>
+            <div class="d1"><a href="" class="font_style color_hover_orange">特别关注</a></div>
+            <div class="d1"><a href=" "class="font_style color_hover_orange">好友圈</a></div>
+        </div>
+        <!--中间的内容区-->
+        <div class="content_center all_float">
+            <!--内容-->
+            <div class="content_all">
+                <div class="user_index_default">
+                    <span>数据正在加载中...</span>
+
+                </div>
+            </div>
+        </div>
+        <!--右边的内容区-->
+        <div class="content_right all_float">
+            <div class="right_content_title">
+                <span>个人中心</span>
+            </div>
+
+            <div class="user_index_right_user_msg">
+       <!--         &lt;!&ndash;头像&ndash;&gt;
+                <div class='user_index_user_center_head titleOn'></div>
+                &lt;!&ndash;用户信息&ndash;&gt;
+                <div class='user_index_username user_index_right_style'><p>昵称: <span class='font_color_orange user_index_right_user_style'>加载中...</span></p></div>
+                <div class='user_index_gender user_index_right_style'><p>性别:<span class='font_color_orange user_index_right_user_style'>加载中...</span></p></div>
+                <div class='user_index_email user_index_right_style'><p>邮箱:<span class='font_color_orange user_index_right_user_style'>加载中...</span></p></div>
+                <div class='user_index_brief user_index_right_style'><p>简介:<span class='font_color_orange user_index_right_user_style'>加载中...</span></p></div>
+                <div class='user_index_birth user_index_right_style'><p>生日:<span class='font_color_orange user_index_right_user_style'>加载中...</span></p></div>
+                <div class='user_index_registry_date user_index_right_style'><p>注册日期:<span class='font_color_orange user_index_right_user_style'>加载中...</span></p></div>
+                <div class='user_index_border_date user_index_right_style'><p></p></div>
+                <div class='user_index_update_msg user_index_right_style'>
+                    <p class='color_hover_orange publicshubiao_ok '>编辑资料 <i class=' iconfont icon-youjiantou'></i></p>
+                </div>-->
+            </div>
+        </div>
+    </div>
+</div>
+<!--弹出的新窗口-->
+<div id="windows" class="new_windows_css">
+    <!--标题-->
+    <p class="window_title">编辑头像</p>
+    <!--头像-->
+    <div class="img_block">
+        <img id="user_index_img_none" src="" alt="">
+    </div>
+    <!--更新头像的按钮-->
+    <div class="file_upload_div">
+        <form action="" id="user_index_upload_userHead" enctype="multipart/form-data">
+            <input type="file" name="file" class="user_img_input_head" value="更改头像">
+        </form>
+    </div>
+    <!--确认取消的按钮-->
+    <div class="button_div">
+        <ul>
+            <li>
+                <button class="cancel">取消</button>
+            </li>
+            <li>
+                <button class="user_index_update_isOk">确认</button>
+            </li>
+        </ul>
+    </div>
+</div>
+<!--背景变暗-->
+<div id="shadow" class="new_shadow_css"></div>
+<!--提示信息的弹框-->
+    <div id="hint_msg"><span class="msg_span_1"></span></div>
+</div>
+
+
+
+<script type="text/javascript">
+
+     $(function(){
+
+
+
+     })
+
+
+
+
+
+
+
+</script>
+
+</body>
+</html>

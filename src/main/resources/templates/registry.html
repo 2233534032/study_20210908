@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>注册账号</title>
+</head>
+<!--login.css-->
+<link rel="stylesheet" href="./static/css/css_my/login.css">
+<script type="text/javascript" src="./static/js/jquery-1.7.2.js"></script>
+<!--提示信息的弹框-->
+<link rel="stylesheet" href="./static/css/css_my/hint_msg.css">
+<style>
+    .login_body_div{
+
+       /* background-image: url("./title/reg_bg_min.jpg");*/
+        background-image: linear-gradient(to bottom,#8BE7DC,#ffffff);
+        background-size: 100%,100% ;
+    }
+
+    .error_msg_div{
+        width: 200px;
+        height: 20px;
+      /*  background-color: red;*/
+        position: absolute;
+        right: 110px;
+        top:80px;
+        display: none;
+    }
+
+    /*#hint_msg{
+        display: block;
+    }*/
+
+
+</style>
+
+<body>
+<div class="login_body_div">
+    <!--登录页广告-->
+    <div class="login_advertising_div">
+        <div>
+            <h1>这就是生活</h1>
+            <p>每一天都是崭新的开始，加油打工人，不负好时光</p>
+        </div>
+
+    </div>
+    <!--登录框-->
+    <div class="login_input_div">
+        <div class="login_form_div">
+            <!--欢迎登录字样-->
+            <div class="login_title_div">
+                <h2>欢迎注册</h2>
+            </div>
+            <!--去注册？-->
+            <div class="login_to_registry_div">
+                <span>已有账号？</span><a href="login_new">登录</a>
+            </div>
+            <div class="error_msg_div">
+                <span class="error_msg" style="color: red"></span>
+            </div>
+            <!--输入框-->
+            <div class="login_input_form_div">
+                <p class="login_input_p">
+                    <label class="input_left_label">用户名</label>
+                    <input id="username" class="login_input_input login_input_default" autocomplete="off" placeholder="请输入用户名" value="" name="username" type="text">
+                </p>
+                <p class="login_input_p">
+                    <label class="input_left_label">密 &nbsp&nbsp码</label>
+                    <input id="password" class="login_input_input login_input_default" placeholder="请输入密码" value="" name="password" type="password">
+                </p>
+                <p class="login_input_p">
+                    <label class="input_left_label">邮  &nbsp&nbsp箱</label>
+                    <input id="email" class="login_input_input login_input_default" placeholder="请输入邮箱" value="" name="email" type="email">
+                </p>
+                <p class="login_input_p">
+                    <label class="input_left_label">验证码</label>
+                    <input id="email_code" class="login_code_input login_input_default" placeholder="请输入验证码" value="" name="code" type="text">
+                    <input class="login_code_button login_input_default" type="button" value="获取验证码">
+                </p>
+            </div>
+            <!--登录按钮-->
+            <div class="login_buttom_div">
+                <p>
+                    <input id="registry_button" class="login_login_button login_input_default" type="button" value="注册">
+                </p>
+
+            </div>
+        </div>
+    </div>
+    <!--提示信息的弹框-->
+    <div id="hint_msg"><span class="msg_span_1"></span></div>
+</div>
+
+<script type="text/javascript">
+
+    /*页面加载完成后执行*/
+    $(function(){
+        /*获取可视窗口的高*/
+        var height =  window.innerHeight;
+        /*获取可视窗口的宽*/
+        var width  = window.innerWidth;
+        console.log("height:"+height+" width:"+width);
+        /*设置元素的宽高*/
+        $(".login_body_div").css("height",height).css('width',width);
+
+        /*用户名框失去焦点时*/
+        $("#username").live('blur',function(){
+            var username = $("#username").val();
+            if(username==""||username==null){
+                $(".error_msg_div").css("display",'block');
+                $(".error_msg").html("用户名不能为空");
+                $("#username").css("border","1px solid red");
+                return;
+            } else{
+                $(".error_msg_div").css("display",'none');
+                $(".error_msg").html("");
+                $("#username").css("border","1px solid #00FF7F");
+                usernameIsRegistry(username);
+            }
+
+        })
+        /*密码框失去焦点时*/
+        $("#password").live('blur',function(){
+            var password = $("#password").val();
+            if(password==""||password==null){
+                $(".error_msg_div").css("display",'block');
+                $(".error_msg").html("密码不能为空");
+                $("#password").css("border","1px solid red");
+            }else{
+                $(".error_msg_div").css("display",'none');
+                $(".error_msg").html("");
+                $("#password").css("border","1px solid #00FF7F");
+            }
+        })
+        /*邮箱框失去焦点时*/
+        $("#email").live('blur',function(){
+            var email = $("#email").val();
+            if(email==""||email==null){
+                $(".error_msg_div").css("display",'block');
+                $(".error_msg").html("邮箱不能为空");
+                $("#email").css("border","1px solid red");
+            }else if(!isEmail(email)){
+                $(".error_msg_div").css("display",'block');
+                $(".error_msg").html("邮箱格式不正确！");
+                $("#email").css("border","1px solid red");
+            }else{
+                $(".error_msg_div").css("display",'none');
+                $(".error_msg").html("");
+                $("#email").css("border","1px solid #00FF7F");
+            }
+        })
+        /*验证码框*/
+        $("#email_code").live('blur',function(){
+            var email_code = $("#email_code").val();
+            if(email_code==""||email_code==null){
+                $(".error_msg_div").css("display",'block');
+                $(".error_msg").html("验证码不能为空");
+                $("#email_code").css("border","1px solid red");
+            }else{
+                $(".error_msg_div").css("display",'none');
+                $(".error_msg").html("");
+                $("#email_code").css("border","1px solid #00FF7F");
+            }
+        })
+
+        /*注册按钮的注册事件*/
+        $("#registry_button").live("click",function(){
+            isRegistryFrom();
+
+        })
+        function isRegistryFrom(){
+            var username = $("#username").val();
+            if(username==""||username==null){
+                $(".error_msg_div").css("display",'block');
+                $(".error_msg").html("用户名不能为空");
+                $("#username").css("border","1px solid red");
+                return;
+            }else{
+                $(".error_msg_div").css("display",'none');
+                $(".error_msg").html("");
+                $("#username").css("border","1px solid #00FF7F");
+            }
+            var password = $("#password").val();
+            if(password==""||password==null){
+                $(".error_msg_div").css("display",'block');
+                $(".error_msg").html("密码不能为空");
+                $("#password").css("border","1px solid red");
+                return;
+            }else{
+                $(".error_msg_div").css("display",'none');
+                $(".error_msg").html("");
+                $("#password").css("border","1px solid #00FF7F");
+            }
+            var email = $("#email").val();
+            if(email==""||email==null){
+                $(".error_msg_div").css("display",'block');
+                $(".error_msg").html("邮箱不能为空");
+                $("#email").css("border","1px solid red");
+            }else if(!isEmail(email)){
+                $(".error_msg_div").css("display",'block');
+                $(".error_msg").html("邮箱格式不正确！");
+                $("#email").css("border","1px solid red");
+                return;
+            }else{
+                $(".error_msg_div").css("display",'none');
+                $(".error_msg").html("");
+                $("#email").css("border","1px solid #00FF7F");
+            }
+            var email_code = $("#email_code").val();
+            if(email_code==""||email_code==null){
+                $(".error_msg_div").css("display",'block');
+                $(".error_msg").html("验证码不能为空");
+                $("#email_code").css("border","1px solid red");
+                return;
+            }else{
+                $(".error_msg_div").css("display",'none');
+                $(".error_msg").html("");
+                $("#email_code").css("border","1px solid #00FF7F");
+            }
+            /*注册事件*/
+            registry(username,password,email,email_code);
+        }
+
+        /*注册事件的ajax请求*/
+        function registry(username,password,email,email_code){
+            $.ajax({
+                type:'post',
+                url:'registry',
+                data:{
+                    'username':username,
+                    'password':password,
+                    'email':email,
+                    'email_code':email_code
+                }
+            }).success(function(result){
+                console.log(result);
+                if(result.code===501){
+                    $(".error_msg_div").css("display",'block');
+                    $(".error_msg").html(result.msg);
+                    $("#email_code").css("border","1px solid red");
+                }else if(result.code===502){
+                    $(".error_msg_div").css("display",'block');
+                    $(".error_msg").html(result.msg);
+                    $("#email_code").css("border","1px solid red");
+                }else{
+                    window.location.replace(result.location_r);
+                }
+            })
+        }
+        /*获取验证码注册一个点击事件*/
+        $(".login_code_button").live('click',function(){
+            var email = $("#email").val();
+            console.log(email);
+            if(email==null||email==""){
+                $(".error_msg_div").css("display",'block');
+                $(".error_msg").html("邮箱不能为空");
+                $("#email").css("border","1px solid red");
+                return ;
+            }else if(!isEmail(email)){
+                $(".error_msg_div").css("display",'block');
+                $(".error_msg").html("邮箱格式不正确！");
+                $("#email").css("border","1px solid red");
+            }else{
+                $(".error_msg_div").css("display",'none');
+                $(".error_msg").html("");
+                $("#email").css("border","1px solid #00FF7F");
+                getEmailCode(email);
+            }
+
+        });
+        /*ajax请求验证码*/
+        function getEmailCode(email){
+            $.ajax({
+                type:'post',
+                url:'email_code',
+                data:{'email':email}
+            }).success(function(result){
+                if(result.code==200){
+                   hint(result.msg);
+                }
+            })
+        }
+        /*ajax请求后台判断用户名是否可用*/
+        function usernameIsRegistry(username){
+            $.ajax({
+                type:'post',
+                url:'usernameIsRegistry',
+                data:{'username':username}
+            }).success(function(result){
+                console.log(result);
+                if(result.code==500){
+                    $(".error_msg_div").css("display",'block');
+                    $(".error_msg").html("用户名已存在");
+                    $("#username").css("border","1px solid red");
+                }else {
+                    $(".error_msg_div").css("display",'none');
+                    $(".error_msg").html("");
+                    $("#username").css("border","1px solid #00FF7F");
+                }
+            })
+        }
+        /*提示框信息*/
+        function hint(msg){
+            /*获取提示框对象*/
+            var hint =  $("#hint_msg");
+            /*设置提示框的显示*/
+            hint.css("display",'block');
+            /*设置提示信息*/
+            $(".msg_span_1").html(msg);
+            console.log("调用了");
+            /*设置多长时间自动消失*/
+            setTimeout(function(){
+                hint.hide();
+            },2000);
+        }
+        /*匹配邮箱格式的方法*/
+        function isEmail(email) {
+            var reg = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2,3}){1,2})$/;
+            if (!reg.test(email)) {
+                return false;
+            }
+            return true;
+        }
+        $(document).keyup(function(event){
+            if(event.keyCode==13){
+               isRegistryFrom();
+            }
+        })
+
+    })
+</script>
+
+</body>
+</html>

@@ -1,0 +1,133 @@
+
+/*index页面的中间内容去部分*/
+
+/******************************内容区******************/
+.content_div{
+    width: 1149px;
+    height:auto;
+    margin-left: 100px;
+    margin-right: 100px;
+  /*  position: relative;*/
+
+}
+.content_left{
+    margin-top: 70px;
+    width: 180px;
+    height: auto;
+    background-color: #fff;
+    border-radius: 3px;
+    position: sticky;
+    top: 55px;
+}
+.content_left>div{
+    width:180px;
+    height: 44px;
+    /* background-color: #f0edf3;*/
+}
+.d1:hover{
+    background-color: #f0edf3;
+}
+.font_style{
+    display: block;
+    color: #333;
+    font-size: 14px;
+    line-height: 44px;
+    margin-left: 30px;
+    width:150px;
+    height: 44px;
+}
+.index_font{
+    color: #333;
+    font-size: 22px;
+    line-height: 44px;
+    margin-left: 10px;
+    font-weight: 500;
+}
+
+
+/****************************内容区中间**************************************/
+.content_center{
+    position: relative;
+    width: 650px;
+    height: auto;
+    /* background-color: #fff;*/
+    margin-left: 10px;
+    margin-top: 70px;
+    border-radius: 5px;
+}
+.content_top{
+    position: relative;
+    width: 650px ;
+    height: auto;
+    background-color: #fff;
+
+}
+
+.content_input_text{
+    width: 600px ;
+    height: 70px;
+    border-radius: 10px;
+    outline: none;
+    margin-top: 10px;
+    border: 1px solid #fff;
+    background-color: #e5e6eb;
+    padding: 6px  11px;
+    font-size: 18px;
+}
+.content_input_text:focus{
+    background-color: #fff;
+    border: 1px solid orange;
+}
+.file_upload{
+    position: absolute;
+    bottom: 5px;
+    margin-left: 15px;
+}
+.btn_ok {
+    position: absolute;
+    bottom: 5px;
+    right: 15px;
+}
+.btn_ok>input{
+    width: 50px;
+    height: 25px;
+    background-color: orange;
+    border-radius: 5px;
+    color: #ffffff;
+    border: 1px solid orange;
+}
+
+#disp{
+    display: block;
+
+}
+#nsp{
+    display: none;
+    color:#e5e6eb ;
+}
+
+#orange_font{
+    color: orange;
+}
+#orange_font1{
+    color:orange;
+}
+
+/*.comment_li>i{
+    color: orange;
+}
+.commentCount_span{
+    color: orange;
+}*/
+
+/*子评论折叠的向下的箭头*/
+i.index_xiangxiajiantou{
+    font-size: 8px;
+}
+
+/*鼠标移入的效果*/
+.font_hover:hover{
+    cursor: pointer;
+}
+
+

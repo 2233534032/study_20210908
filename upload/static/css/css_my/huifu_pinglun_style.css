@@ -1,0 +1,104 @@
+
+/*回复评论的隐藏弹框的按钮*/
+.new_windows_css_comment{
+    padding: 20px;
+    display: none;
+    position: fixed;
+    margin: auto;
+    top: 0px;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 530px;
+    height: 150px;
+    background-color: #fff;
+    z-index: 9999;
+    border-radius: 10px;
+}
+
+/*隐藏框中的输入框的样式*/
+.windows_comment_input>textarea{
+    position: absolute;
+    top: 60px;
+    margin-left: 10px;
+    margin-top: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 11px;
+    width: 500px;
+    height: 40px;
+    border-radius: 10px;
+    outline: none;
+    resize: none;
+    font-size: 16px;
+    background-color: #e5e6eb;
+    border: 1px solid #e5e6eb;
+}
+/*获取焦点时*/
+.windows_comment_input>textarea:focus {
+    border: 1px solid orange;
+    background-color: #ffffff;
+
+}
+/*提交按钮*/
+.btn_ok_t_comment>input{
+    width: 60px;
+    height: 35px;
+    background-color: orange;
+    border-radius: 40px;
+    color: #ffffff;
+    border: 1px solid orange;
+    position: absolute;
+    top:130px;
+    right: 30px;
+}
+/*取消按钮的样式*/
+#on_cancel{
+    width: 60px;
+    height: 35px;
+    background-color: orange;
+    border-radius: 20px;
+    border: 1px solid orange;
+    color: #fff;
+    margin-left: 20px;
+    position: absolute;
+    top:130px;
+    left: 10px;
+}
+.comment_cu:hover{
+    cursor: pointer;
+}
+/*这是回复子评论的弹框的样式*/
+#reply_btn{
+    width: 60px;
+    height: 35px;
+    background-color: orange;
+    border-radius: 20px;
+    border: 1px solid orange;
+    color: #fff;
+    margin-left: 20px;
+    position: absolute;
+    top:130px;
+    left: 10px;
+}
+
+/*设置显示评论的新窗口的层级*/
+.windows_son_comment_cat{
+    position: relative;
+    z-index: 13;
+}
+
+.new_shadow_css_huifu_pinglun{
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    -moz-opacity: 0.6;
+    opacity: .60;
+    filter: alpha(opacity=66);
+    background-color: black;
+    z-index: 8888;
+}
+

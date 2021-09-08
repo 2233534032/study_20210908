@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+</head>
+<!--login.css-->
+<link rel="stylesheet" href="./static/css/css_my/login.css">
+<script type="text/javascript" src="./static/js/jquery-1.7.2.js"></script>
+<!--提示信息的弹框-->
+<link rel="stylesheet" href="./static/css/css_my/hint_msg.css">
+
+<script type="text/javascript" src="./static/js/login_new.js"></script>
+
+<style>
+    .login_body_div{
+
+       /* background-image: url("./title/reg_bg_min.jpg");*/
+        background-image: linear-gradient(to bottom,#8BE7DC,#ffffff);
+        background-size: 100%,100% ;
+    }
+
+    .error_msg_div{
+        width: 200px;
+        height: 20px;
+      /*  background-color: red;*/
+        position: absolute;
+        right: 110px;
+        top:80px;
+        display: none;
+    }
+
+    /*#hint_msg{
+        display: block;
+    }*/
+
+
+</style>
+
+<body>
+<div class="login_body_div">
+    <!--登录页广告-->
+    <div class="login_advertising_div">
+        <div>
+            <h1>这就是生活</h1>
+            <p>每一天都是崭新的开始，加油打工人，不负好时光</p>
+        </div>
+
+    </div>
+    <!--登录框-->
+    <div class="login_input_div">
+        <div class="login_form_div">
+            <!--欢迎登录字样-->
+            <div class="login_title_div">
+                <h2>欢迎登录</h2>
+            </div>
+            <!--去注册？-->
+            <div class="login_to_registry_div">
+                <span>没有账号？</span><a href="toRegistry">注册</a>
+            </div>
+            <div class="error_msg_div">
+                <span class="error_msg" style="color: red"></span>
+            </div>
+            <!--输入框-->
+            <div class="login_input_form_div">
+                <p class="login_input_p">
+                    <label class="input_left_label">用户名</label>
+                    <input id="username" class="login_input_input login_input_default" autocomplete="off" placeholder="请输入用户名" value="" name="username" type="text">
+                </p>
+                <p class="login_input_p">
+                    <label class="input_left_label">密 &nbsp&nbsp码</label>
+                    <input id="password" class="login_input_input login_input_default" placeholder="请输入密码" value="" name="password" type="password">
+                </p>
+            </div>
+            <!--登录按钮-->
+            <div class="login_buttom_div">
+                <p>
+                    <input id="login_button" class="login_login_button login_input_default" type="button" value="登录">
+                </p>
+
+            </div>
+        </div>
+    </div>
+    <!--提示信息的弹框-->
+    <div id="hint_msg"><span class="msg_span_1"></span></div>
+
+
+</div>
+
+<script type="text/javascript">
+
+
+
+</script>
+
+</body>
+</html>

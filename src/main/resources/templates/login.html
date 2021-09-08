@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>login</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+            background: url(./title/bj.jpg) no-repeat 0px 0px;
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            -moz-background-size: 100% 100%;
+        }
+
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+
+        #loginDiv {
+            width: 37%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 300px;
+
+            box-shadow: 7px 7px 17px rgba(52, 56, 66, 0.5);
+            border-radius: 5px;
+        }
+
+        #name_trip {
+            margin-left: 50px;
+            color: red;
+        }
+
+        p {
+            margin-top: 30px;
+            margin-left: 20px;
+            color: azure;
+        }
+
+        input {
+            margin-left: 15px;
+            border-radius: 5px;
+            border-style: hidden;
+            height: 30px;
+            width: 140px;
+
+            outline: none;
+            color: #f0edf3;
+            padding-left: 10px;
+        }
+
+        .button {
+            border-color: cornsilk;
+
+            color: aliceblue;
+            border-style: hidden;
+            border-radius: 5px;
+            width: 100px;
+            height: 31px;
+            font-size: 16px;
+        }
+        .msg_div{
+           display: none;
+        }
+    </style>
+
+    <script type="text/javascript" src="./static/js/jquery-1.7.2.js"></script>
+    <script type="text/javascript">
+
+        /*页面加载完成执行*/
+        $(function(){
+            /*登录按钮点击事件*/
+            $(".login_btn").click(function(){
+                var username = $("#userNname").val();
+                var password = $("#password").val();
+                if(username==""|| username.length==0){
+                    $(".msg_divs").addClass("msg_div")
+                    $(".msg").html("用户名不能为空");
+                    return false;
+                }
+                if(password=""||password.length==0){
+                    $(".msg").html("密码不能为空");
+                    return false;
+                }
+                $(".msg").html("");
+            })
+
+            /*重置按钮点击事件*/
+            $(".reset_btn").click(function(){
+                /*清空提示信息窗口*/
+                $(".msg").html("");
+            })
+
+            $("#btn").click(function(){
+                window.location.replace("index");
+            })
+
+        })
+
+    </script>
+</head>
+
+<body>
+<div id="login">
+    <form action="login" id="form" method="post">
+        <h1 style="text-align: center;color: aliceblue;">登录</h1>
+        <p class="msg" style=" text-align:center;color:red;" th:text="${msg}"></p>
+        <p>username:<input id="userNname" type="text" name="username" value="" style="color: #111"></p>
+        <p>password:  <input id="password" type="password" name="password" value="" style="color: #111"><label id="password_trip"></label></p>
+        <div style="text-align: center;margin-top: 30px;">
+            <input type="submit" class="button login_btn" value="登录" style="color: #111">
+            <input type="reset" class="button reset_btn" value="重置" style="color: #111">
+        </div>
+    </form>
+</div>
+
+<div><input id="btn" type="button" value="跳转"></div>
+
+</body>
+</html>

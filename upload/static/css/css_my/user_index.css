@@ -1,0 +1,428 @@
+
+/*去除默认的样式*/
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+html{
+    background-color: #e5e6eb;
+}
+body{
+    height: auto;
+    width: auto;
+}
+.body_div{
+    width: auto;
+    height: auto;
+}
+.body_div:after{
+    content: "";
+    clear: both;
+    display: block;
+    height: 0;
+    overflow: hidden;
+    visibility: hidden;
+}
+/*顶部导航栏的样式*/
+.top_nav_bar{
+    width: 100%;
+    height: 48px;
+    background-color: #fff;
+    border-top: 1px solid orange;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 10;
+    /*    position: sticky;
+      !* top: 0;*!*/
+
+}
+/*设置元素向左浮动*/
+.top_nav_bar>div{
+    float: left;
+    line-height: 48px;
+    margin-left: 200px;
+
+}
+.top_nav_bar>div>input{
+    width: 300px;
+    height: 28px;
+    background-color: transparent;
+    border: 1px solid #808080;
+}
+
+.top_nav_bar>div>input:focus {
+    border: 1px solid orange;
+}
+
+.right_nav_bar>ul>li{
+    margin-left: 20px;
+    float: left;
+    line-height: 48px;
+}
+.right_nav_bar>ul>li>a{
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+/*个人主题区*************************************/
+/*.content_div{
+    width: 800px;
+    height: auto;
+    position: absolute;
+    margin:auto ;
+    top:90px;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+.content_div::after{
+    content: "";
+    !*追加的内容（元素）默认是行内块元素，需要把元转换块元素使用*!
+    display: block;
+    !*清除左侧浮动元素带来的影响*!
+    clear: left;
+}
+.user_title{
+    width: auto;
+    height: 300px;
+    background-image: url("./title/user_bj.jpg");
+    background-size: auto;
+    position: relative;
+    border-radius: 5px 5px 0px 0px;
+}
+.user_head_photo{
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    margin:auto ;
+    top:-140px;
+    left: 0;
+    bottom: 0;
+    right: 0;
+
+}
+!*头像的设置，设置为圆角*!
+.user_head_photo>a>img{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+!*用户昵称*!
+.user_nick{
+    font-size: 25px;
+    color: #fff;
+}
+!*用户简介*!
+.user_bridf{
+    font-size: 16px;
+    color: #fff;
+}
+!*内容区导航的样式*!
+.content_nav{
+    width: 920px;
+    height: 42px;
+    background-color: #fff;
+    position: relative;
+    border-radius: 0px 0px 5px 5px ;
+}
+.content_nav>ul{
+    width: 510px;
+    position: absolute;
+    margin: auto;
+    top:0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+.content_nav>ul>li{
+    float: left;
+    margin-left: 100px;
+}
+.content_nav>ul>li>span>a{
+    text-decoration: none;
+    display: block;
+    width: 70px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+}
+.content_nav>ul>li>span>a:hover{
+    border-bottom: 2px solid orange;
+}
+
+!*内容区*!
+.text_div{
+    width: 920px;
+    height: auto;
+    !*  border-top: 1px solid #fff;*!
+
+}
+!*解决内容区高度塌陷问题*!
+.text_div:after{
+    content: "";
+    clear: both;
+    display: block;
+    height: 0;
+    overflow: hidden;
+    visibility: hidden;
+}
+.text_div>div{
+    float: left;
+}
+
+.user_message{
+    width: 300px;
+    height: auto;
+
+    position: sticky;
+    top: 30px;
+}
+!*关注和粉丝的小窗口*!
+.user_my{
+    margin-top: 20px;
+    width: 300px;
+    height: 60px;
+    border-radius: 5px;
+    background-color: #fff;
+}
+.user_my>ul>li{
+    float: left;
+    width: 100px;
+    line-height: 30px;
+}
+.user_my>ul>li>a{
+    text-decoration: none;
+}*/
+/*个人信息中心**********************************/
+.user_center{
+    margin-top: 20px;
+    width: 300px;
+    height: 100%;
+    background-color: #fff;
+    border-radius: 5px;
+
+}
+.user_center>ul>li{
+    padding-left: 20px;
+    width: 280px;
+    height: 30px;
+    border-bottom: 1px solid #f0edf3;
+    color: #333;
+    line-height: 30px;
+    font-size: 12px;
+}
+/*编辑资料的样式*/
+.update_message{
+    margin: auto;
+    border-top: 1px solid #808080;
+    position: relative;
+}
+.update_message>a{
+    color: #333;
+    text-decoration: none;
+    text-align: center;
+    position: absolute;
+    margin: auto;
+    top:0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+.update_message>a:hover{
+    color: orange;
+}
+
+/*右侧微博正文区*/
+.right_content{
+    margin-top: 20px;
+    margin-left: 20px;
+    width:600px;
+    height: auto;
+}
+div>.right_content{
+    float: right;
+}
+
+/*点击头像弹出框的样式*/
+.new_windows_css{
+    padding: 20px;
+    display: none;
+    position: fixed;
+    margin: auto;
+    top: 100px;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 700px;
+    height: 500px;
+    background-color: #fff;
+    z-index: 11;
+    border-radius: 10px;
+}
+
+/*背景变暗的样式*/
+.new_shadow_css{
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    -moz-opacity: 0.6;
+    opacity: .60;
+    filter: alpha(opacity=66);
+    background-color: black;
+    z-index: 10;
+}
+/*修改头像弹出窗口的样式**********************/
+/*标题*/
+.window_title{
+    color: #111111;
+    font-size: 18px;
+    width: auto;
+    line-height: 40px;
+    border-bottom: 1px solid #808080;
+    margin-bottom: 10px;
+}
+/*头像图片的样式*/
+.img_block>img{
+    width: 350px;
+    height: 350px;
+    border-radius: 50%;
+    position: absolute;
+    top:0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+}
+.file_upload_div{
+    position: absolute;
+    bottom: 50px;
+
+}
+.user_img_input{
+
+}
+.button_div{
+    width: 680px;
+    position: absolute;
+    bottom: 10px;
+}
+.button_div>ul>li{
+    float: left;
+}
+/*按钮的样式和位置*/
+.button_div>ul>li>button{
+    width: 90px;
+    height: 35px;
+    background-color: orange;
+    border-radius: 20px;
+    border: 1px solid orange;
+    color: #fff;
+    margin-left: 160px;
+}
+.button_div>ul>li>button:hover{
+    cursor: pointer;
+}
+
+/*右侧正文区**********************************/
+.main_body{
+    width: 600px;
+    height: auto;
+    background-color: #ffffff;
+    border-radius: 5px;
+    margin-top: 10px;
+
+}
+.text_main_body{
+    padding: 20px;
+    width: 580px;
+    height: auto;
+    position: relative;
+    overflow: hidden;
+}
+.text_main_body>div{
+    float: left;
+    color: #333;
+}
+.user_img_head{
+    width: 50px;
+    height: 300px;
+}
+.user_img_head>img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+/*正文部分用户昵称的样式*/
+.user_user_nick{
+    font-size: 18px;
+    color: #111111;
+    margin-bottom: 5px;
+}
+/*正文部分用户发表日期的样式*/
+.user_new_data{
+    font-size: 12px;
+    color: #808080;
+    margin-bottom: 5px;
+}
+/*正文内容的部分样式*/
+.user_user_content{
+    font-size:14px;
+    color: #333;
+}
+.main_body_content{
+    width: 510px;
+    height: auto;
+    margin-left: 5px;
+}
+/*正文图片承载的div设置上外边距*/
+.user_user_img{
+    margin-top: 10px;
+}
+/*正文图片的样式*/
+.content_img{
+    width: 400px;
+    height: 200px;
+    border-radius: 8px;
+}
+
+/*转发点赞的body*/
+.give_body{
+    width: 600px;
+    height: 40px;
+
+
+}
+.give_body>ul>li{
+    float: left;
+    width: 70px;
+    line-height: 40px;
+    margin: 0 60px;
+}
+.give_body>ul>li{
+    color: #808080;
+    font-size: 12px;
+    text-decoration: none;
+}
+.fa_1{
+    color: #808080;
+    font-size: 13px;
+    margin-right: 5px;
+}
+
+/*鼠标移入时的效果*/
+.give_body>ul>li:hover{
+    color: orange;
+    /*鼠标变小手的样式*/
+    cursor: pointer;
+}
+.give_body>ul>li:hover>i{
+    color: orange;
+    /*鼠标变小手的样式*/
+    cursor: pointer;
+}

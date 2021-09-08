@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>文件上传</title>
+    <style>
+
+        .img_div{
+            width: 150px;
+            height: 100px;
+            border-radius: 50% 50%;
+        }
+    </style>
+
+    <script type="text/javascript" src="./static/js/jquery-1.7.2.js"></script>
+    <script type="text/javascript">
+
+        $(function(){
+            /*ajax异步上传图片*/
+            $(".file_btn").click(function(){
+                var formData = new FormData($("#upload_form")[0]);
+                console.log(formData);
+                $.ajax({
+                    type: 'post',
+                    url: 'upload',
+                    data: formData,
+                    dataType: 'json',
+                    async:true,
+                    cache: false,
+                    processData: false,
+                    contentType: false,
+                }).success(function(result){
+                    /*修改im标签的src属性*/
+                    $("#load_img").attr("src",result.src);
+                    $(".upload_ok").html(result.msg)
+                    console.log(result);
+
+                })
+            })
+
+        })
+
+    </script>
+</head>
+<body>
+
+<div>
+    <form id="upload_form" method="post" enctype="multipart/form-data">
+        <input type="file" name="file">
+    </form>
+    <div>
+        <input type="submit" class="file_btn">
+        <span class="upload_ok"></span>
+    </div>
+
+
+
+
+<div class="img_div" >
+    <img class="img" src="#" alt="" id="load_img" style="width: 100px;height: 100px ; border-radius: 50% 50%">
+</div>
+
+</body>
+</html>

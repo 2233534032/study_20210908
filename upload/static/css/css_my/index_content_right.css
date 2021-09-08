@@ -1,0 +1,51 @@
+/*正文部分右侧的热搜榜样式*/
+
+/*************************内容右边**********************************************/
+.content_right{
+    position: sticky;
+    top: 55px;
+    width: 280px;
+    height: 500px;
+    background-color: #ffff;
+    margin-left: 10px;
+    margin-top: 70px;
+    border-radius: 3px;
+}
+.right_content_title{
+    color: #111;
+    font-size: 14px;
+    width: auto;
+    height: 44px;
+    border-bottom: 1px solid #f2f3f8;
+    margin-left: 20px;
+    margin-right: 20px;
+    line-height: 44px;
+}
+.hos_list>div{
+    width: auto;
+    border-bottom: 1px solid #f2f3f8;
+    margin-left: 20px;
+    margin-right: 20px;
+    line-height: 34px;
+}
+
+.hos_list>div>span{
+    color: #333;
+    font-size: 12px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    display: block;
+    width: 200px;
+    height: 34px;
+}
+
+/*刷新按钮*/
+.up_hos_list{
+    width: auto;
+    height: 44px;
+    border-bottom: 1px solid #f2f3f8;
+    margin-left: 20px;
+    margin-right: 20px;
+    line-height: 44px;
+}

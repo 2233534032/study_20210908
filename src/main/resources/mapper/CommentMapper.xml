@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+    <mapper> 标签：当前xml文件的根标签
+        namespace：命名空间，唯一值，可以是自定义字符串，但是一般开发都使用映射的Dao接口的全类名
+    <select> :表示指定的是查询
+        id: 一般写执行该语句的方法名，可以自定义字符串，不推荐
+        resultType：表示结果类型，是执行sql语句后得到的ResultSet 一般写的都是封装结果的类的全类名
+    <update> ：表示是更新操作
+    <insert> :表示是插入操作
+    <delete>：表示删除操作
+-->
+<mapper namespace="com.study.dao.CommentDao">
+    <!--&lt;!&ndash;  查询student中所有的数据 &ndash;&gt;
+    <select id="findStudent" resultType="com.study.domain.Student">
+        select id,name,email,age from student order by id
+    </select>
+
+    &lt;!&ndash;添加数据操作&ndash;&gt;
+    <insert id="insertStudent">
+        insert into student values(#{id},#{name},#{email},#{age})
+    </insert>-->
+
+    <select id="findCommentByBlogId" resultType="Comment">
+        select b.id,u.username,b.user_id userId,u.user_head userHead,b.comment,b.comment_date commentDate,b.give
+        from b_user u,blog_comment b
+        where u.id=b.user_id and blog_id=#{id}
+        order by b.comment_date desc
+    </select>
+
+    <!--添加评论-->
+    <insert id="addComment">
+        insert into blog_comment(blog_id,user_id,blog_user_id,comment,comment_date) values(#{blogId},#{userId},#{blogUserId},#{comment},#{commentDate})
+    </insert>
+
+    <!--根据博客id，获取评论的总数-->
+    <select id="findCommentCountByBlogId" resultType="int">
+        select count(*) from blog_comment where blog_id=#{id}
+    </select>
+
+    <!--根据blogUserId 和 state状态来获取当前用户未查看的评论信息-->
+    <select id="findCommentByBlogUserId" resultType="Comment_entry">
+        select id,blog_id blogId,user_id userId,blog_user_id blogUserId,comment,comment_date commentDate,give,state
+        from blog_comment
+        where blog_user_id=#{blogUserId} and state=#{state} and user_id!=blog_user_id
+        order by comment_date desc
+    </select>
+
+    <select id="isCommentUnRead" resultType="int">
+        select count(*)
+        from blog_comment
+        where blog_user_id=#{blogUserId} and state=#{state}
+    </select>
+
+    <!--清除未读评论-->
+    <update id="clearComment" >
+        update blog_comment
+        set state=1
+        where blog_user_id=#{blogUserId} and state=#{state}
+    </update>
+    <!--根据id获取评论-->
+    <select id="findCommentById" resultType="Comment_entry">
+        select id,blog_id blogId,user_id userId,blog_user_id blogUserId,comment,comment_date commentDate,give,state
+        from blog_comment
+        where id=#{id}
+    </select>
+    <!--点赞评论的-->
+    <update id="giveComment">
+        update blog_comment
+        set give=give+1
+        where id=#{id}
+    </update>
+
+    <!--获取总的评论点赞数-->
+    <select id="findCommentGiveCount" resultType="int">
+        select give
+        from blog_comment
+        where id=#{commentId}
+    </select>
+
+    <!--获取单条数据-->
+    <select id="findThisClickCommentById" resultType="Comment">
+        select id,blog_id blogId,
+    </select>
+    <!--以下是操作SonComment的（子评论表）-->
+    <!--添加子评论的方法-->
+    <insert id="addSonComment">
+        insert into son_comment(blog_id,comment_id,user_id,comment_user_id,content,comment_date,give)
+        values(#{blogId},#{commentId},#{userId},#{commentUserId},#{content},#{commentDate},#{give})
+    </insert>
+    <!--根据ComentID获取对应的子评论-->
+    <select id="findSonCommentByCommentId" resultType="SonCommentPage">
+        select s.id,s.comment_id commentId,s.user_id userId,s.comment_user_id commentUserId,
+        s.content,s.comment_date commentDate,s.give,
+        u.username sonCommentUsername
+        from son_comment s ,b_user u
+        where s.user_id = u.id and s.comment_id=#{commentId}
+    </select>
+
+    <!--获取最新一条数据-->
+    <select id="findSonCommentByCommentIdAndNewSonComment" resultType="SonCommentPage">
+          select s.id,s.comment_id commentId,s.user_id userId,s.comment_user_id commentUserId,
+        s.content,s.comment_date commentDate,s.give,
+        u.username sonCommentUsername
+        from son_comment s ,b_user u
+        where s.user_id = u.id and s.comment_id=#{commentId}
+        order by s.comment_date desc
+        limit 1
+    </select>
+
+    <!--以下是操作comment_give表的-->
+    <insert id="addUserGiveComment">
+        insert into comment_give(comment_id,give_user_id,comment_user_id,give_date)
+        values(#{commentId},#{giveUserId},#{commentUserId},#{giveDate})
+    </insert>
+
+    <!--根据commentId 和giveUserId 查询符合条件的字段-->
+    <select id="findGiveCommentByGiveUserIdAndCommentId" resultType="int">
+        select count(*)
+        from comment_give
+        where comment_id=#{commentId} and give_user_id = #{giveUserId}
+    </select>
+
+
+
+    <!--根据commentId和userId，返回字段-->
+    <select id="findCommentUserIsGive" resultType="int">
+        select count(*)
+        from comment_give
+        where comment_id=#{commentId} and give_user_id=#{userId}
+    </select>
+
+    <delete id="deleteCommentByBlogId">
+        delete from blog_comment
+        where blog_id=#{blogId}
+    </delete>
+
+    <!--根据id返回son_comment表的单条数据-->
+    <select id="findSonCommentById" resultType="SonComment">
+        select id,blog_id blogId,comment_id commentId,user_id userId,comment_user_id commentUserId,
+        content,comment_date commentDate,give,state
+        from son_comment
+        where id=#{id}
+    </select>
+
+    <!--获取子评论的总个数-->
+    <select id="findSonCommentIdByCommentId" resultType="int">
+        select id
+        from son_comment
+        where comment_id=#{commentId}
+    </select>
+
+    <!--返回sonComment中的一条数据-->
+    <select id="findSonCommentByCommentIdReturnOne" resultType="SonComment">
+        select id,blog_id blogId,comment_id commentId,user_id userId,comment_user_id commentUserId,content,comment_date commentDate,
+        give,state
+        from son_comment
+        where comment_id=#{commentId}
+        order by give desc
+        limit 1
+    </select>
+
+    <!--以下是访问son_comment_reply表操作********************************-->
+    <insert id="addSonCommentReply">
+        insert into son_comment_reply(blog_id,comment_id,son_comment_id,user_id,son_comment_user_id,content,comment_date)
+        values(#{blogId},#{commentId},#{sonCommentId},#{userId},#{sonCommentUserId},#{content},#{commentDate})
+
+    </insert>
+
+    <!--根据commentId获取数据-->
+    <select id="findReplySonCommentByCommentId" resultType="ReplySonCommentDate">
+        select id,comment_id commentId,son_comment_id sonCommentId,user_id userId,
+        son_comment_user_id sonCommentUserId,content,comment_date commentDate,give,state
+        from son_comment_reply
+        where son_comment_id=#{commentId}
+    </select>
+
+
+    <!--获取子评论的个数-->
+    <select id="findReplyCommentCount" resultType="int">
+        select count(*)
+        from son_comment_reply
+        where son_comment_id=#{sonCommentId}
+    </select>
+
+    <select id="findReplySonCommentByCommentIdAndNewComment" resultType="ReplySonCommentDate">
+        select id,comment_id commentId,son_comment_id sonCommentId,user_id userId,
+        son_comment_user_id sonCommentUserId,content,comment_date commentDate,give,state
+        from son_comment_reply
+        where comment_id=#{commentId}
+        order by comment_date desc
+        limit 1
+    </select>
+
+
+
+
+
+</mapper>
+
